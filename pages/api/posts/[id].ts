@@ -13,7 +13,7 @@ module.exports = async (req: NextApiRequest, res: NextApiResponse) => {
     const index = id - 1
     const post = posts[index]
 
-    res.status(200).json({ post })
+    res.status(200).json(post)
     res.end()
   } else {
     res.end(`Invalid method ${req.method}. Only GET is allowed.`)

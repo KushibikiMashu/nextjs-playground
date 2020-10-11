@@ -14,9 +14,9 @@ export const posts: Posts = [
     date: '2020-02-01',
   },
   {
-    id: 2,
+    id: 3,
     title: 'Next.js',
-    body: 'Next.js is the framework for React developers',
+    body: 'Next.js is the framework for React developers.',
     date: '2020-03-01',
   },
 ]

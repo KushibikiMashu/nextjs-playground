@@ -16,7 +16,6 @@ export const Component: React.FC<Props> = (props) => (
       type="button"
       onClick={props.onOpen}
     >
-      {console.log(`mx-4 text-white rounded-md p-4 ${props.color === 'blue' ? 'bg-blue-500' : 'bg-teal-500'}`)}
       {props.anchor.toUpperCase()}
     </button>
     <Drawer anchor={props.anchor} open={props.open} onClose={props.onClose} variant="persistent">

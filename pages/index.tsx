@@ -10,7 +10,7 @@ type Props = {
 
 const Component: React.FC<Props> = (props) => (
   <div>
-    <div className="py-20">
+    <div className="pt-20 pb-12">
       <Greeting target={'Next.js Playground'} />
     </div>
 
@@ -34,11 +34,15 @@ const Container: React.FC<ContainerProps> = () => {
   const pages = [
     {
       name: 'modals',
-      description: 'An Implementation of Modal, Drawer and Dialog with Material UI',
+      description: 'An Implementation of Modal, Drawer and Dialog with Material UI.',
+    },
+    {
+      name: 'client-fetch',
+      description: 'Request from browser to Next.js server by SWR',
     },
     {
       name: 'api/posts',
-      description: 'An Endpoint that returns Post data with API Routes by Next.js feature',
+      description: 'An Endpoint that returns Post data with API Routes by Next.js feature.',
     },
   ]
 
