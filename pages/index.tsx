@@ -15,7 +15,7 @@ const Component: React.FC<Props> = (props) => (
     </div>
 
     <div className="py-10">
-      <h2 className="text-center text-2xl font-bold">Pages</h2>
+      <h2 className="text-center text-2xl font-bold">Pages / APIs</h2>
       <ul className="text-center">
         {props.pages.map((page) => (
           <li className="m-6" key={page.name}>
@@ -38,7 +38,7 @@ const Container: React.FC<ContainerProps> = () => {
     },
     {
       name: 'client-fetch',
-      description: 'Request from browser to Next.js server by SWR',
+      description: 'Fetch Blog Post from browser to Next.js server by SWR',
     },
     {
       name: 'api/posts',
