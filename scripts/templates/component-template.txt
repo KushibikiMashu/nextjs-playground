@@ -1,12 +1,12 @@
 import React from 'react'
 
+type ContainerProps = unknown
+
 type Props = unknown
 
 export const Component: React.FC<Props> = () => (
   <></>
 )
-
-type ContainerProps = unknown
 
 const Container: React.FC<ContainerProps> = () => {
 
