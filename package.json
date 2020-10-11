@@ -27,7 +27,8 @@
     "next": "^9.5.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-use": "^15.3.4"
+    "react-use": "^15.3.4",
+    "swr": "^0.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
