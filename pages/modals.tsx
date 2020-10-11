@@ -90,7 +90,7 @@ export const Component: React.FC<Props> = (props) => (
     </div>
     <div className="m-10">
       <Link href="/">
-        <a>Top</a>
+        <a className="text-blue-600 visited:text-purple-600">Top</a>
       </Link>
     </div>
   </>

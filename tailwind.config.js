@@ -3,7 +3,9 @@ module.exports = {
     removeDeprecatedGapUtilities: true,
   },
   purge: ['./src/components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
-  variants: {},
+  variants: {
+    textColor: ['visited'],
+  },
   plugins: [],
   theme: {
     inset: {
