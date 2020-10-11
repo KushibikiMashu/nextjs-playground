@@ -3,7 +3,7 @@ import React from 'react'
 
 type Props = {
   anchor: 'bottom' | 'right'
-  color: string
+  color: 'blue' | 'teal'
   open: boolean
   onOpen: () => void
   onClose: () => void
@@ -11,14 +11,19 @@ type Props = {
 
 export const Component: React.FC<Props> = (props) => (
   <>
-    <button className={`mx-4 bg-${props.color}-500 text-white rounded-md p-4`} type="button" onClick={props.onOpen}>
+    <button
+      className={`mx-4 text-white rounded-md p-4 ${props.color === 'blue' ? 'bg-blue-500' : 'bg-teal-500'}`}
+      type="button"
+      onClick={props.onOpen}
+    >
+      {console.log(`mx-4 text-white rounded-md p-4 ${props.color === 'blue' ? 'bg-blue-500' : 'bg-teal-500'}`)}
       {props.anchor.toUpperCase()}
     </button>
     <Drawer anchor={props.anchor} open={props.open} onClose={props.onClose} variant="persistent">
       <div className="h-64 w-64 flex justify-center items-center flex-col">
         <span className="text-2xl">{props.anchor.toUpperCase()}</span>
         <button
-          className={`my-4 bg-${props.color}-500 text-white rounded-md p-4`}
+          className={`my-4 text-white rounded-md p-4 ${props.color === 'blue' ? 'bg-blue-500' : 'bg-teal-500'}`}
           type="button"
           onClick={props.onClose}
         >
