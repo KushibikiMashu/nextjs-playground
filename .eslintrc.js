@@ -61,6 +61,8 @@ module.exports = {
       },
     ],
     'import/no-unresolved': 'off',
+    // 空のfunctionを許容
+    '@typescript-eslint/no-empty-function': 'off',
     'react/prop-types': ['off'],
     // windowやlocationを使えなくなるためoff
     'no-restricted-globals': 'off',
