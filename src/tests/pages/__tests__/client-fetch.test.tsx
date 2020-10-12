@@ -1,8 +1,8 @@
+import { render, screen } from '@testing-library/react'
 import React from 'react'
 import ClientFetch from '~/pages/client-fetch'
 import { posts } from '~/src/data'
 import usePost from '~/src/hooks/usePost'
-import { render, screen } from '~/src/tests/utils'
 
 jest.mock('~/src/hooks/usePost')
 
