@@ -3,8 +3,8 @@ import useSWR from 'swr'
 import { posts } from '~/src/data'
 import { Post } from '~/src/types'
 
-export default function usePost(initialId = 1) {
-  const [id, setId] = useState(initialId)
+export default function usePost() {
+  const [id, setId] = useState(1)
   const handleClick = useCallback(() => {
     setId((state) => (state === posts.length ? 1 : state + 1))
   }, [])
