@@ -1,5 +1,4 @@
 import { Dialog, Modal } from '@material-ui/core'
-import Link from 'next/link'
 import React, { useCallback } from 'react'
 import useOpen from 'src/hooks/useOpen'
 import Drawer from '~/src/components/drawer'
@@ -87,11 +86,6 @@ export const Component: React.FC<Props> = (props) => (
           />
         </div>
       </Dialog>
-    </div>
-    <div className="m-10">
-      <Link href="/">
-        <a className="text-blue-600 visited:text-purple-600">Top</a>
-      </Link>
     </div>
   </>
 )

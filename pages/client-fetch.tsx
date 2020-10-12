@@ -1,5 +1,4 @@
 import { CircularProgress } from '@material-ui/core'
-import Link from 'next/link'
 import React from 'react'
 import usePost from '~/src/hooks/usePost'
 import { Post } from '~/src/types'
@@ -40,12 +39,6 @@ export const Component: React.FC<Props> = (props) => (
     <p className="text-sm">Just click the button above 6 times!</p>
     <p className="text-sm">You will find loading will be faster at 4th, 5th and 6th click.</p>
     <p className="text-sm">It is because SWR loads post data from client cache at the second rotation.</p>
-
-    <div className="m-10">
-      <Link href="/">
-        <a className="text-blue-600 visited:text-purple-600">Top</a>
-      </Link>
-    </div>
   </div>
 )
 

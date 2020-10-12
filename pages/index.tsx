@@ -10,7 +10,7 @@ type Props = {
 
 const Component: React.FC<Props> = (props) => (
   <div>
-    <div className="pt-20 pb-12">
+    <div className="pb-8">
       <Greeting target={'Next.js Playground'} />
     </div>
 
