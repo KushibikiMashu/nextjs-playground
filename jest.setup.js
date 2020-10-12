@@ -1,4 +1,8 @@
 /* eslint-disable no-undef */
+// react testing library
+import '@testing-library/jest-dom'
+
+// msw
 import { server } from '~/src/mocks/server'
 
 // Establish API mocking before all tests.
