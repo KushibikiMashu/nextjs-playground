@@ -1,8 +1,8 @@
 import { Dialog, Modal } from '@material-ui/core'
 import Link from 'next/link'
 import React, { useCallback } from 'react'
-import Drawer from 'src/components/Drawer'
 import useOpen from 'src/hooks/useOpen'
+import Drawer from '~/src/components/drawer'
 
 type ContainerProps = unknown
 
