@@ -24,7 +24,7 @@ export const Component: React.FC<Props> = (props) => (
         GitHub
       </a>
     </nav>
-    <div className="flex-grow pt-32">
+    <div className="flex-grow pt-24">
       {props.children}
       {!props.isTop && (
         <div className="m-10 text-center">
