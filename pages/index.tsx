@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Greeting from 'src/components/Greeting'
+import Greeting from 'src/components/greeting'
 import { Pages } from '~/src/types'
 
 type ContainerProps = undefined
