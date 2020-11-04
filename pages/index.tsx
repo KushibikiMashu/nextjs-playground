@@ -40,6 +40,10 @@ const Container: React.FC<ContainerProps> = () => {
       description: 'Fetch Blog Post from browser to Next.js server by SWR',
     },
     {
+      name: 'reselect',
+      description: 'Rerender',
+    },
+    {
       name: 'api/posts',
       description: 'An Endpoint that returns Post data with API Routes by Next.js feature.',
     },
