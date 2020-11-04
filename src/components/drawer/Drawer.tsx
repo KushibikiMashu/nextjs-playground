@@ -1,5 +1,5 @@
 import { Drawer } from '@material-ui/core'
-import React from 'react'
+import React, { memo } from 'react'
 
 type Props = {
   anchor: 'bottom' | 'right'
@@ -35,4 +35,4 @@ export const Component: React.FC<Props> = (props) => (
 
 Component.displayName = 'Drawer'
 
-export default Component
+export default memo(Component)
