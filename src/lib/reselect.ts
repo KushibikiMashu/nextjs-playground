@@ -27,6 +27,10 @@ export const ShopContext = createContext<Context>({
 const shopItemsSelector = (state: State) => state.shop.items
 const taxPercentSelector = (state: State) => state.shop.taxPercent
 
+export const appleSelector = createSelector(shopItemsSelector, (items): { name: 'apple'; value: number } =>
+  items.find((item) => item.name === 'apple')
+)
+
 export const subtotalSelector = createSelector(shopItemsSelector, (items) =>
   items.reduce((acc, item) => acc + item.value, 0)
 )
