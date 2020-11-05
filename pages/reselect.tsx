@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Cart from '~/src/components/cart'
-import { ShopContext, shopState } from '~/src/lib'
+import { ShopContext, State as ShopState, shopState } from '~/src/lib'
 
 type ContainerProps = unknown
 
@@ -13,8 +13,12 @@ export const Component: React.FC<Props> = () => (
 )
 
 const Container: React.FC<ContainerProps> = () => {
+  const [state, update] = useState<ShopState>(shopState)
+  const addItem = (item: ShopState['shop']['items'][number]) =>
+    update((state) => ({ ...state, shop: { ...state.shop, items: state.shop.items.concat(item) } }))
+
   return (
-    <ShopContext.Provider value={shopState}>
+    <ShopContext.Provider value={{ state, addItem }}>
       <Component />
     </ShopContext.Provider>
   )
