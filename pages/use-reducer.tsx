@@ -1,5 +1,9 @@
 import React, { useReducer } from 'react'
 
+// TODO
+// actionのログを描画
+// タイムトラベルの機能を追加
+
 type ContainerProps = unknown
 
 type Props = {
