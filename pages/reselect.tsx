@@ -7,7 +7,7 @@ type ContainerProps = unknown
 type Props = unknown
 
 export const Component: React.FC<Props> = () => (
-  <div className="w-64 mx-auto">
+  <div className="w-128 mx-16 text-center">
     <Cart />
   </div>
 )

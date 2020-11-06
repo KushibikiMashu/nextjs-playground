@@ -9,6 +9,6 @@ export const Component: React.FC<Props> = (props) => (
   </p>
 )
 
-Component.displayName = 'Item'
+Component.displayName = 'MemoizedItem'
 
 export default memo(Component)
