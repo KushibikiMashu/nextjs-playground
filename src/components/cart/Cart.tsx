@@ -20,6 +20,9 @@ type Props = {
 
 export const Component: React.FC<Props> = (props) => (
   <div>
+    <h1>Re-render</h1>
+    <p>Please turn on on devtools</p>
+
     <div className="my-2 text-center">
       <button className="btn-blue" type="button" onClick={props.onClick}>
         Add dummy item
@@ -120,6 +123,13 @@ const appleFromContext = state.shop.items.find((item) => item.name === 'apple')
         </details>
       </li>
     </ul>
+
+    <details>
+      <summary>Answer</summary>
+      <div className="w-128">
+        <img src="/images/re-render.png" alt="re-render" />
+      </div>
+    </details>
 
     <hr />
 
