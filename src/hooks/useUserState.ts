@@ -1,4 +1,5 @@
-import { useCallback, useReducer } from 'react'
+import { useCallback } from 'react'
+import { useImmerReducer } from 'use-immer'
 
 // TODO
 // タイムトラベルの機能を追加
@@ -28,7 +29,8 @@ const initialState: State = {
   logs: [],
 }
 
-// TODO immerを試す
+// Normal reducer
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const reducer = (state: State, action: Action): State => {
   // Need some middleware lol
   const logs = [...state.logs, action.type]
@@ -41,7 +43,7 @@ const reducer = (state: State, action: Action): State => {
     case 'USER::CHANGE':
       return { ...state, user: { ...state.user, name: action.payload.name }, logs }
     case 'TODO::ADD':
-      return { ...state, todos: [...state.todos, { id: action.payload.id, title: action.payload.title }], logs }
+      return { ...state, todos: [...state.todos, { ...action.payload }], logs }
     case 'TODO::DELETE':
       // eslint-disable-next-line no-case-declarations
       const todos = state.todos.filter((todo) => todo.id !== action.payload.id)
@@ -59,10 +61,51 @@ const reducer = (state: State, action: Action): State => {
   }
 }
 
+// reducer for immer
+const immerReducer = (draft: State, action: Action) => {
+  const type = action.type
+  draft.logs.push(type)
+
+  switch (type) {
+    case 'USER::LOGIN':
+      draft.user.loggedIn = true
+      return
+    case 'USER::LOGOUT':
+      draft.user.name = null
+      draft.user.loggedIn = false
+      return
+    case 'USER::CHANGE':
+      draft.user.name = action.payload.name
+      return
+    case 'TODO::ADD':
+      draft.todos.push(action.payload)
+      return
+    case 'TODO::DELETE':
+      // eslint-disable-next-line no-case-declarations
+      delete draft.todos[action.payload.id]
+      return
+    case 'FETCH::LOADING':
+      draft.status = 'loading'
+      return
+    case 'FETCH::FULFILLED':
+      draft.status = 'fulfilled'
+      return
+    case 'FETCH::REJECTED':
+      draft.status = 'rejected'
+      return
+    case 'FETCH::RESET':
+      draft.status = null
+  }
+}
+
 export const isChange = (type): type is 'USER::CHANGE' => type === 'USER::CHANGE'
 
 export const useUserState = () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  // Usual
+  // const [state, dispatch] = useReducer(reducer, initialState)
+
+  // Immer
+  const [state, dispatch] = useImmerReducer(immerReducer, initialState)
 
   const userHandler = useCallback((type: 'USER::LOGIN' | 'USER::LOGOUT' | 'USER::CHANGE', name?: string) => {
     if (isChange(type)) {
