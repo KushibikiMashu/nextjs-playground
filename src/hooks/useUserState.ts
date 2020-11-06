@@ -71,14 +71,20 @@ const immerReducer = (draft: State, action: Action) => {
       draft.user.loggedIn = false
       return
     case 'USER::CHANGE':
-      draft.user.name = action.payload.name
+      // Why TS doesn't recognize the action.type is "USER::CHANGE"?
+      if (action.type === 'USER::CHANGE') {
+        draft.user.name = action.payload.name
+      }
       return
     case 'TODO::ADD':
-      draft.todos.push(action.payload)
+      if (action.type === 'TODO::ADD') {
+        draft.todos.push(action.payload)
+      }
       return
     case 'TODO::DELETE':
-      // eslint-disable-next-line no-case-declarations
-      delete draft.todos[action.payload.id]
+      if (action.type === 'TODO::DELETE') {
+        delete draft.todos[action.payload.id]
+      }
       return
     case 'FETCH::LOADING':
       draft.status = 'loading'
