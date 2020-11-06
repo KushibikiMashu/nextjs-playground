@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useContext, useMemo } from 'react'
+import React, { useCallback, useContext, useMemo } from 'react'
 import ContextItem from './ContextItem'
 import Item from './Item'
 import MemoizedItem from './MemoizedItem'
@@ -20,10 +20,10 @@ type Props = {
 
 export const Component: React.FC<Props> = (props) => (
   <div>
-    <h1>Re-render</h1>
-    <p>Please turn on on devtools</p>
+    <h1 className="text-2xl font-bold">Re-render</h1>
+    <p className="mt-2">Please turn on &quot;Highlight updates when components render&quot; in React devtools</p>
 
-    <div className="my-2 text-center">
+    <div className="mt-8 mb-2 text-center">
       <button className="btn-blue" type="button" onClick={props.onClick}>
         Add dummy item
       </button>
@@ -32,18 +32,19 @@ export const Component: React.FC<Props> = (props) => (
 
     <ul className="my-4">
       <li className="py-4">
-        <p className="font-bold text-lg">Props from context（useContext） → re-rendered</p>
+        <p className="font-bold text-lg">1. Props from context（useContext） → re-rendered</p>
         <Item item={props.appleFromContext} />
         <details>
           <summary>Details</summary>
           <p className="mt-2">Data source</p>
           <pre>
-            <code className="text-blue-700">{`
+            <code className="text-blue-700">
+              {`
 const { state } = useContext(ShopContext)
 const appleFromContext = state.shop.items.find((item) => item.name === 'apple')
-        `}</code>
+`}
+            </code>
           </pre>
-          <br />
           <p className="mt-2">Usage</p>
           <code className="text-blue-700">{'<Item item={props.appleFromContext} />'}</code>
           <br />
@@ -52,7 +53,10 @@ const appleFromContext = state.shop.items.find((item) => item.name === 'apple')
         </details>
       </li>
       <li className="py-4">
-        <p className="font-bold text-lg">Props from selector（reselect） → re-rendered</p>
+        <p className="font-bold text-lg">
+          2. Props from selector（reselect）
+          <br /> → re-rendered and skipped re-calculating
+        </p>
         <Item item={props.appleFromSelector} />
         <details>
           <summary>Details</summary>
@@ -65,7 +69,7 @@ const appleFromContext = state.shop.items.find((item) => item.name === 'apple')
       </li>
       <li className="py-4">
         <p className="font-bold text-lg">
-          Memoized Component → <span>re-rendered</span>
+          3. Props from context(useContext) → <span>re-rendered</span>
         </p>
         <ContextItem />
         <details>
@@ -79,7 +83,7 @@ const appleFromContext = state.shop.items.find((item) => item.name === 'apple')
       </li>
       <li className="py-4">
         <p className="font-bold text-lg">
-          Memoized Component → <span className="text-red-500">skip re-rendering</span>
+          4. Memoized Component → <span className="text-red-500">skipped re-rendering(fastest)</span>
         </p>
         <MemoizedItem item={props.appleFromContext} />
         <details>
@@ -93,7 +97,7 @@ const appleFromContext = state.shop.items.find((item) => item.name === 'apple')
       </li>
       <li className="py-4">
         <p className="font-bold text-lg">
-          Memoized Component → <span>re-rendered</span>
+          5. Props from useMemo → <span>re-rendered</span>
         </p>
         <Item item={props.appleFromUseMemo} />
         <details>
@@ -103,12 +107,12 @@ const appleFromContext = state.shop.items.find((item) => item.name === 'apple')
           <br />
           <p className="mt-2">Component Definition</p>
           <code className="text-blue-700">{'const memoizedApple = useMemo((props) => // some logic, [])'}</code>
-          <p>Caution: It may cause a bug because no dependencies array.</p>
+          <p>Caution: It may cause a bug because of no dependencies array.</p>
         </details>
       </li>
       <li className="py-4">
         <p className="font-bold text-lg">
-          Memoized Component → <span>re-rendered</span>
+          6. Props from useContext and useMemo → <span>re-rendered</span>
         </p>
         <UseMemoItem />
         <details>
@@ -118,14 +122,16 @@ const appleFromContext = state.shop.items.find((item) => item.name === 'apple')
           <br />
           <p className="mt-2">Component Definition</p>
           <code className="text-blue-700">{'const MemoizedItem = () => ReactElement'}</code>
+          <br />
           <code className="text-blue-700">{'const { state } = useContext(ShopContext)'}</code>
+          <br />
           <code className="text-blue-700">{'const item = useMemo(() => // some logic, [state.shop.items])'}</code>
         </details>
       </li>
     </ul>
 
     <details>
-      <summary>Answer</summary>
+      <summary>Actual Rendering</summary>
       <div className="w-128">
         <img src="/images/re-render.png" alt="re-render" />
       </div>
@@ -190,4 +196,4 @@ const Container: React.FC<ContainerProps> = () => {
 
 Container.displayName = 'Cart'
 
-export default memo(Container)
+export default Container
