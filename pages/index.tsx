@@ -40,12 +40,12 @@ const Container: React.FC<ContainerProps> = () => {
       description: 'Fetch Blog Post from browser to Next.js server by SWR.',
     },
     {
-      name: 'use-reducer',
-      description: 'State management with useReducer and immer.',
-    },
-    {
       name: 're-render',
       description: 'How to avoid needless re-rendering. Reselect, React.memo, useMemo etc.',
+    },
+    {
+      name: 'use-reducer',
+      description: 'State management with useReducer and immer.',
     },
     {
       name: 'api/posts',
