@@ -17,12 +17,17 @@ export const Component: React.FC<Props> = (props) => (
           <a>Next.js Playground</a>
         </Link>
       </p>
-      <a
-        className="mr-8 text-sm text-blue-600 visited:text-purple-600"
-        href={`https://github.com/KushibikiMashu/nextjs-playground${props.isTop ? '' : '/tree/main/pages'}`}
-      >
-        GitHub
-      </a>
+      <div className="mr-8 text-sm">
+        <a
+          className="link"
+          href={`https://github.com/KushibikiMashu/nextjs-playground${props.isTop ? '' : '/tree/main/pages'}`}
+        >
+          GitHub
+        </a>
+        <a className="ml-4 link" href="https://twitter.com/Panda_Program">
+          Twitter
+        </a>
+      </div>
     </nav>
     <div className="flex-grow pt-24">
       {props.children}
@@ -36,7 +41,7 @@ export const Component: React.FC<Props> = (props) => (
     </div>
     <footer className="py-8 flex justify-center items-center border-t border-gray-200">
       Created By{' '}
-      <a className="pl-2 text-blue-600 visited:text-purple-600" href="https://">
+      <a className="ml-2 text-blue-600 visited:text-purple-600" href="https://twitter.com/Panda_Program">
         @Panda_Program
       </a>
     </footer>
