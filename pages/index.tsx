@@ -37,15 +37,15 @@ const Container: React.FC<ContainerProps> = () => {
     },
     {
       name: 'client-fetch',
-      description: 'Fetch Blog Post from browser to Next.js server by SWR',
+      description: 'Fetch Blog Post from browser to Next.js server by SWR.',
     },
     {
       name: 'use-reducer',
-      description: 'State management with useReducer and immer',
+      description: 'State management with useReducer and immer.',
     },
     {
-      name: 'reselect',
-      description: 'Select logic helps memomize the return value to avoid needless rerender',
+      name: 're-render',
+      description: 'How to avoid needless re-rendering. Reselect, React.memo, useMemo etc.',
     },
     {
       name: 'api/posts',
