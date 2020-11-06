@@ -22,7 +22,7 @@ export const Component: React.FC<Props> = (props) => (
           className="link"
           href={`https://github.com/KushibikiMashu/nextjs-playground${props.isTop ? '' : '/tree/main/pages'}`}
         >
-          GitHub
+          Code
         </a>
         <a className="ml-4 link" href="https://twitter.com/Panda_Program">
           Twitter

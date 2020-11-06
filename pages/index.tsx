@@ -41,11 +41,11 @@ const Container: React.FC<ContainerProps> = () => {
     },
     {
       name: 're-render',
-      description: 'How to avoid needless re-rendering. Reselect, React.memo, useMemo etc.',
+      description: 'How to avoid needless re-rendering.',
     },
     {
       name: 'use-reducer',
-      description: 'State management with useReducer and immer.',
+      description: 'State management with useReducer and useImmerReducer.',
     },
     {
       name: 'api/posts',
