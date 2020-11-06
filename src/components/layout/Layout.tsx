@@ -19,7 +19,7 @@ export const Component: React.FC<Props> = (props) => (
       </p>
       <a
         className="mr-8 text-sm text-blue-600 visited:text-purple-600"
-        href="https://github.com/KushibikiMashu/nextjs-playground"
+        href={`https://github.com/KushibikiMashu/nextjs-playground${props.isTop ? '' : '/tree/main/pages'}`}
       >
         GitHub
       </a>
