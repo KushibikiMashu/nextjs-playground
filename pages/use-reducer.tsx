@@ -5,6 +5,7 @@ type ContainerProps = unknown
 
 type Props = {
   isButtonDisabled: boolean
+  hasOldState: boolean
   getActionColor: (action: string) => 'red' | 'orange' | 'blue' | 'grey'
 } & ReturnType<typeof useUserState>
 
@@ -59,6 +60,17 @@ export const Component: React.FC<Props> = (props) => (
       {props.state.user.loggedIn && <div className="pb-3">Hello, {props.state.user.name}</div>}
 
       {props.state.status && <div>status: {props.state.status}</div>}
+
+      {/*<div>*/}
+      {/*  <button*/}
+      {/*    className={`btn-${props.hasOldState ? 'disabled' : 'blue'}`}*/}
+      {/*    type="button"*/}
+      {/*    onClick={() => props.appHandler('APP::PREV')}*/}
+      {/*    disabled={props.hasOldState}*/}
+      {/*  >*/}
+      {/*    to prev state*/}
+      {/*  </button>*/}
+      {/*</div>*/}
     </div>
 
     <p className="my-2 text-xl text-center">Action logs</p>
@@ -75,10 +87,11 @@ export const Component: React.FC<Props> = (props) => (
 )
 
 const Container: React.FC<ContainerProps> = () => {
-  const { state, userHandler, todosHandler, fetchHandler } = useUserState()
+  const { state, userHandler, todosHandler, fetchHandler, appHandler } = useUserState()
 
   const isNameEmpty = state.user.name === null || state.user.name === ''
   const isButtonDisabled = isNameEmpty || state.status === 'loading'
+  const hasOldState = state.oldStates.length === 0
   const getActionColor = useCallback((action: string) => {
     if (action.startsWith('USER')) {
       return 'blue'
@@ -97,7 +110,9 @@ const Container: React.FC<ContainerProps> = () => {
       userHandler={userHandler}
       todosHandler={todosHandler}
       fetchHandler={fetchHandler}
+      appHandler={appHandler}
       isButtonDisabled={isButtonDisabled}
+      hasOldState={hasOldState}
       getActionColor={getActionColor}
     />
   )

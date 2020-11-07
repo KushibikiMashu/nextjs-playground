@@ -6,6 +6,7 @@ type State = {
   todos: { id: number; title: string }[]
   status: 'loading' | 'fulfilled' | 'rejected' | null
   logs: string[]
+  oldStates: State[]
 }
 
 type Action =
@@ -18,12 +19,14 @@ type Action =
   | { type: 'FETCH::FULFILLED' }
   | { type: 'FETCH::REJECTED' }
   | { type: 'FETCH::RESET' }
+  | { type: 'APP::PREV' }
 
 const initialState: State = {
   user: { loggedIn: false, name: null },
   todos: [],
   status: null,
   logs: [],
+  oldStates: [],
 }
 
 // Usual reducer
@@ -60,6 +63,12 @@ const initialState: State = {
 // reducer for immer
 const immerReducer = (draft: State, action: Action) => {
   const type = action.type
+
+  // middleware 相当
+  // ---------------
+  // add old state
+  draft.oldStates.push(draft)
+  // add log
   draft.logs.push(type)
 
   switch (type) {
@@ -97,6 +106,16 @@ const immerReducer = (draft: State, action: Action) => {
       return
     case 'FETCH::RESET':
       draft.status = null
+    // case 'APP::PREV': {
+    //   // TODO implement
+    //   // この action で追加した state と log を削除
+    //   draft.logs.pop()
+    //   draft.oldStates.pop()
+    //   // 前回の log を削除
+    //   draft.logs.pop()
+    //   // 前回の oldState を取得できない
+    //   draft = draft.oldStates.pop()
+    // }
   }
 }
 
@@ -130,6 +149,7 @@ export const useUserState = () => {
     },
     []
   )
+  const appHandler = useCallback((type: 'APP::PREV') => dispatch({ type }), [])
 
-  return { state, userHandler, todosHandler, fetchHandler }
+  return { state, userHandler, todosHandler, fetchHandler, appHandler }
 }
