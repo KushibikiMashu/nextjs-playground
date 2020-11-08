@@ -1,7 +1,8 @@
 import React from 'react'
+import { AppleItem } from '~/src/lib'
 
 export type Props = {
-  item: { name: 'apple'; value: number }
+  item: AppleItem
 }
 
 export const Component: React.FC<Props> = (props) => (

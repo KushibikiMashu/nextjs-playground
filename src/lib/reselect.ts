@@ -18,6 +18,8 @@ export const shopState: State = {
   },
 }
 
+export type AppleItem = typeof shopState['shop']['items'][0]
+
 type Context = { state: State; addItem?: (item: State['shop']['items'][number]) => void }
 
 export const ShopContext = createContext<Context>({
@@ -27,10 +29,9 @@ export const ShopContext = createContext<Context>({
 const shopItemsSelector = (state: State) => state.shop.items
 const taxPercentSelector = (state: State) => state.shop.taxPercent
 
-export const appleSelector = createSelector(
-  shopItemsSelector,
-  (items) => items.find((item) => item.name === 'apple') as { name: 'apple'; value: number }
-)
+export const getAppleItem = (items: State['shop']['items']): AppleItem => items.find((item) => item.name === 'apple')
+
+export const appleSelector = createSelector(shopItemsSelector, getAppleItem)
 
 export const subtotalSelector = createSelector(shopItemsSelector, (items) =>
   items.reduce((acc, item) => acc + item.value, 0)

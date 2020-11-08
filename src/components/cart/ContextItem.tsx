@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Props as ItemProps } from '~/src/components/cart/Item'
-import { ShopContext } from '~/src/lib'
+import { ShopContext, getAppleItem } from '~/src/lib'
 
 type ContainerProps = unknown
 
@@ -14,7 +14,7 @@ const Component: React.FC<Props> = (props) => (
 
 const Container: React.FC<ContainerProps> = () => {
   const { state } = useContext(ShopContext)
-  const item = state.shop.items.find((item) => item.name === 'apple') as { name: 'apple'; value: number }
+  const item = getAppleItem(state.shop.items)
 
   return <Component item={item} />
 }

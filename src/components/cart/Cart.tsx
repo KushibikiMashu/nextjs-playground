@@ -3,15 +3,24 @@ import ContextItem from './ContextItem'
 import Item from './Item'
 import MemoizedItem from './MemoizedItem'
 import UseMemoItem from './UseMemoItem'
-import { ShopContext, State as ShopState, appleSelector, subtotalSelector, taxSelector, totalSelector } from '~/src/lib'
+import {
+  AppleItem,
+  ShopContext,
+  State as ShopState,
+  appleSelector,
+  getAppleItem,
+  subtotalSelector,
+  taxSelector,
+  totalSelector,
+} from '~/src/lib'
 
 type ContainerProps = unknown
 
 type Props = {
   items: ShopState['shop']['items']
-  appleFromContext: { name: 'apple'; value: number }
-  appleFromSelector: { name: 'apple'; value: number }
-  appleFromUseMemo: { name: 'apple'; value: number }
+  appleFromContext: AppleItem
+  appleFromSelector: AppleItem
+  appleFromUseMemo: AppleItem
   subtotal: number
   tax: number
   total: number
@@ -159,16 +168,13 @@ const Container: React.FC<ContainerProps> = () => {
   const { state, addItem } = useContext(ShopContext)
 
   // apple from context
-  const appleFromContext = state.shop.items.find((item) => item.name === 'apple') as { name: 'apple'; value: number }
+  const appleFromContext = getAppleItem(state.shop.items)
 
   // apple from selector
   const appleFromSelector = appleSelector(state)
 
   // apple from useMemo
-  const appleFromUseMemo = useMemo(
-    () => state.shop.items.find((item) => item.name === 'apple') as { name: 'apple'; value: number },
-    []
-  )
+  const appleFromUseMemo = useMemo(() => getAppleItem(state.shop.items), [])
 
   // other selectors
   const subtotal = subtotalSelector(state)
