@@ -32,20 +32,21 @@ const Component: React.FC<Props> = (props) => (
 const Container: React.FC<ContainerProps> = () => {
   const pages = [
     {
-      name: 'modals',
-      description: 'An Implementation of Modal, Drawer and Dialog with Material UI.',
+      name: 're-render',
+      description: 'How to avoid needless re-rendering.',
     },
     {
       name: 'client-fetch',
       description: 'Fetch Blog Post from browser to Next.js server by SWR.',
     },
-    {
-      name: 're-render',
-      description: 'How to avoid needless re-rendering.',
-    },
+    { name: 'game-of-life', description: "Implementation of Conway's Game of Life." },
     {
       name: 'use-reducer',
       description: 'State management with useReducer and useImmerReducer.',
+    },
+    {
+      name: 'modals',
+      description: 'An Implementation of Modal, Drawer and Dialog with Material UI.',
     },
     {
       name: 'api/posts',

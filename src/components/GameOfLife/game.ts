@@ -3,14 +3,18 @@ import * as R from 'ramda'
 // 1 で alive、0で dead を表す
 type Alive = 1
 type Dead = 0
-type Cell = Alive | Dead
-type Board = Cell[][]
+export type Cell = Alive | Dead
+export type Board = Cell[][]
 
 export default class GameOfLife {
   private board: Board
 
   constructor(private cols: number, private rows: number) {
-    this.board = this.init()
+    this.board = this.initialize()
+  }
+
+  get getBoard(): Board {
+    return this.board
   }
 
   setCellsActive = (...args: [number, number][]) => {
@@ -26,7 +30,7 @@ export default class GameOfLife {
   next = () => {
     const prevBoard = R.clone(this.board)
     // ボードを初期化
-    const nextBoard = this.init()
+    const nextBoard = this.initialize()
 
     for (const col of R.range(0, this.cols)) {
       for (const row of R.range(0, this.rows)) {
@@ -66,9 +70,5 @@ export default class GameOfLife {
     return count
   }
 
-  get getBoard(): Board {
-    return this.board
-  }
-
-  private init = () => R.repeat([], this.cols).map(() => R.repeat(0, this.rows)) as Board
+  private initialize = () => R.repeat([], this.cols).map(() => R.repeat(0, this.rows)) as Board
 }
