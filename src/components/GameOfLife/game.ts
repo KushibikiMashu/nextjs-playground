@@ -8,6 +8,7 @@ export type Board = Cell[][]
 
 export default class GameOfLife {
   private board: Board
+  private initialBoard: Board
 
   constructor(private cols: number, private rows: number) {
     this.board = this.initialize()
@@ -15,6 +16,10 @@ export default class GameOfLife {
 
   get getBoard(): Board {
     return this.board
+  }
+
+  reset = () => {
+    this.board = this.initialBoard
   }
 
   setCellsActive = (...args: [number, number][]) => {
@@ -25,6 +30,7 @@ export default class GameOfLife {
     })
 
     this.board = newBoard
+    this.initialBoard = newBoard
   }
 
   next = () => {

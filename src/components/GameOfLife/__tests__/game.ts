@@ -146,3 +146,21 @@ test('過密で死ぬパターン', () => {
     [0, 0, 0],
   ])
 })
+
+test('boardをresetしたとき、最初のboardを返す', () => {
+  const game = new GameOfLife(3, 3)
+  game.setCellsActive([1, 0], [1, 1], [1, 2])
+
+  game.next()
+  game.next()
+
+  game.reset()
+
+  const board = game.getBoard
+
+  expect(board).toEqual([
+    [0, 0, 0],
+    [1, 1, 1],
+    [0, 0, 0],
+  ])
+})
