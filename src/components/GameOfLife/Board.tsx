@@ -1,18 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import GameOfLife, { Board, Cell } from '~/src/components/GameOfLife/game'
+import React from 'react'
+import GameOfLife, { Cell } from '~/src/components/GameOfLife/game'
+import useGameControl from '~/src/hooks/useGameControl'
 
 type ContainerProps = { game: GameOfLife }
 
 type Props = {
-  board: Board
   display: (cell: Cell) => '■' | '□'
-  interval: number
-  onNextClick: () => void
-  onStopClick: () => void
-  onSlowClick: () => void
-  onFastClick: () => void
-  onResetClick: () => void
-}
+} & ReturnType<typeof useGameControl>
 
 export const Component: React.FC<Props> = (props) => (
   <>
@@ -59,51 +53,10 @@ export const Component: React.FC<Props> = (props) => (
 )
 
 const Container: React.FC<ContainerProps> = (props) => {
-  const [board, update] = useState(() => props.game.getBoard)
-  const [interval, updateInterval] = useState(500)
-
-  useEffect(() => {
-    if (interval === 0) {
-      return
-    }
-    const id = setInterval(() => {
-      props.game.next()
-      update(props.game.getBoard)
-    }, interval)
-
-    return () => clearInterval(id)
-  }, [interval])
-
-  const duration = 50
-  const max = 1000
-  const min = 50
-  const handleNextClick = useCallback(() => {
-    props.game.next()
-    const board = props.game.getBoard
-    update(board)
-  }, [])
-  const handleStopClick = useCallback(() => updateInterval(0), [])
-  const handleSlowClick = useCallback(() => updateInterval((state) => (state >= max ? max : state + duration)), [])
-  const handleFastClick = useCallback(() => updateInterval((state) => (state <= min ? min : state - duration)), [])
-  const handleResetClick = useCallback(() => {
-    props.game.reset()
-    updateInterval(500)
-  }, [])
-
+  const hooks = useGameControl(props)
   const display = (cell: Cell) => (cell === 1 ? '■' : '□')
 
-  return (
-    <Component
-      board={board}
-      display={display}
-      interval={interval}
-      onNextClick={handleNextClick}
-      onStopClick={handleStopClick}
-      onSlowClick={handleSlowClick}
-      onFastClick={handleFastClick}
-      onResetClick={handleResetClick}
-    />
-  )
+  return <Component {...hooks} display={display} />
 }
 
 Container.displayName = 'Board'
