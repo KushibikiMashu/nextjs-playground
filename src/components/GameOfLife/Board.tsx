@@ -7,16 +7,15 @@ type Props = {
   board: Board
   display: (cell: Cell) => '■' | '□'
   interval: number
-  onResetClick: () => void
+  onNextClick: () => void
   onStopClick: () => void
   onSlowClick: () => void
   onFastClick: () => void
+  onResetClick: () => void
 }
 
 export const Component: React.FC<Props> = (props) => (
   <>
-    <h1 className="mb-4 text-2xl font-bold text-center">Game Of Life</h1>
-
     <div className="text-center">
       <div className="py-6">
         {props.board.map((row, i) => (
@@ -29,8 +28,14 @@ export const Component: React.FC<Props> = (props) => (
       </div>
 
       <p className="my-4">
-        {props.interval} ms（{`100 < interval < 1000`})
+        {props.interval} ms（{`0 < interval < 1000`})
       </p>
+
+      <div className="my-4">
+        <button className="btn-blue mx-4" type="button" onClick={props.onNextClick}>
+          Next
+        </button>
+      </div>
 
       <div className="my-4">
         <button className="btn-blue mx-4" type="button" onClick={props.onSlowClick}>
@@ -43,6 +48,7 @@ export const Component: React.FC<Props> = (props) => (
           Fast
         </button>
       </div>
+
       <div>
         <button className="btn-red" type="button" onClick={props.onResetClick}>
           Reset
@@ -70,11 +76,19 @@ const Container: React.FC<ContainerProps> = (props) => {
 
   const duration = 50
   const max = 1000
-  const min = 100
-  const handleResetClick = useCallback(() => updateInterval(500), [])
+  const min = 50
+  const handleNextClick = useCallback(() => {
+    props.game.next()
+    const board = props.game.getBoard
+    update(board)
+  }, [])
   const handleStopClick = useCallback(() => updateInterval(0), [])
-  const handleSlowClick = useCallback(() => updateInterval((state) => (state === max ? max : state + duration)), [])
-  const handleFastClick = useCallback(() => updateInterval((state) => (state === min ? min : state - duration)), [])
+  const handleSlowClick = useCallback(() => updateInterval((state) => (state >= max ? max : state + duration)), [])
+  const handleFastClick = useCallback(() => updateInterval((state) => (state <= min ? min : state - duration)), [])
+  const handleResetClick = useCallback(() => {
+    props.game.reset()
+    updateInterval(500)
+  }, [])
 
   const display = (cell: Cell) => (cell === 1 ? '■' : '□')
 
@@ -83,10 +97,11 @@ const Container: React.FC<ContainerProps> = (props) => {
       board={board}
       display={display}
       interval={interval}
-      onResetClick={handleResetClick}
+      onNextClick={handleNextClick}
       onStopClick={handleStopClick}
       onSlowClick={handleSlowClick}
       onFastClick={handleFastClick}
+      onResetClick={handleResetClick}
     />
   )
 }

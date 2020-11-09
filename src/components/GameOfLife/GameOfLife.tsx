@@ -6,7 +6,13 @@ type ContainerProps = unknown
 
 type Props = { game: GameOfLife }
 
-export const Component: React.FC<Props> = (props) => <Board game={props.game} />
+export const Component: React.FC<Props> = (props) => (
+  <>
+    <h1 className="mb-4 text-2xl font-bold text-center">Game Of Life</h1>
+
+    <Board game={props.game} />
+  </>
+)
 
 const Container: React.FC<ContainerProps> = () => {
   const game = new GameOfLife(8, 8)
