@@ -1,6 +1,6 @@
 import React from 'react'
 import Board from './Board'
-import GameOfLife from '~/src/components/GameOfLife/game'
+import GameOfLife from '~/src/components/gameOfLife/game'
 
 type ContainerProps = unknown
 

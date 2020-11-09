@@ -1,5 +1,5 @@
 import React from 'react'
-import GameOfLife from '~/src/components/GameOfLife'
+import GameOfLife from '~/src/components/gameOfLife'
 
 type Props = unknown
 

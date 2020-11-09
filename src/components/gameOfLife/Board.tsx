@@ -1,5 +1,5 @@
 import React from 'react'
-import GameOfLife, { Cell } from '~/src/components/GameOfLife/game'
+import GameOfLife, { Cell } from '~/src/components/gameOfLife/game'
 import useGameControl from '~/src/hooks/useGameControl'
 
 type ContainerProps = { game: GameOfLife }

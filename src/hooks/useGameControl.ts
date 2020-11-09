@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import GameOfLife, { Board } from '~/src/components/GameOfLife/game'
+import GameOfLife, { Board } from '~/src/components/gameOfLife/game'
 
 type Args = {
   game: GameOfLife
