@@ -11,7 +11,7 @@ export default class GameOfLife {
   private initialBoard: Board
 
   constructor(private cols: number, private rows: number) {
-    this.board = this.initialize()
+    this.board = this.setSize()
   }
 
   get getBoard(): Board {
@@ -22,7 +22,7 @@ export default class GameOfLife {
     this.board = this.initialBoard
   }
 
-  setCellsActive = (...args: [number, number][]) => {
+  setCellsAlive = (...args: [number, number][]) => {
     const newBoard = R.clone(this.board)
     args.map((arg) => {
       const [col, row] = arg
@@ -36,7 +36,7 @@ export default class GameOfLife {
   next = () => {
     const prevBoard = R.clone(this.board)
     // ボードを初期化
-    const nextBoard = this.initialize()
+    const nextBoard = this.setSize()
 
     for (const col of R.range(0, this.cols)) {
       for (const row of R.range(0, this.rows)) {
@@ -76,5 +76,5 @@ export default class GameOfLife {
     return count
   }
 
-  private initialize = () => R.repeat([], this.cols).map(() => R.repeat(0, this.rows)) as Board
+  private setSize = () => R.repeat([], this.cols).map(() => R.repeat(0, this.rows)) as Board
 }

@@ -20,7 +20,7 @@ test('縦・横のサイズを指定して Game を開始すると、マスが�
 
 test('Game を開始して横一列のマスを指定すると、指定したマスが1になるボードを返す', () => {
   const game = new GameOfLife(3, 3)
-  game.setCellsActive([1, 0], [1, 1], [1, 2])
+  game.setCellsAlive([1, 0], [1, 1], [1, 2])
   const board = game.getBoard
 
   expect(board).toEqual([
@@ -32,7 +32,7 @@ test('Game を開始して横一列のマスを指定すると、指定したマ
 
 test('横一列が生きているセルで、特定のセルを指定したとき、そのセルの周囲で生きているセルの数を返す', () => {
   const game = new GameOfLife(3, 3)
-  game.setCellsActive([1, 0], [1, 1], [1, 2])
+  game.setCellsAlive([1, 0], [1, 1], [1, 2])
 
   const count1 = game.countAlive(0, 0)
   expect(count1).toBe(2)
@@ -46,7 +46,7 @@ test('横一列が生きているセルで、特定のセルを指定したと�
 
 test('生きているセルが横一列のとき、生きているセルが縦一列のボードを返す', () => {
   const game = new GameOfLife(3, 3)
-  game.setCellsActive([1, 0], [1, 1], [1, 2])
+  game.setCellsAlive([1, 0], [1, 1], [1, 2])
   game.next()
   const board = game.getBoard
 
@@ -59,7 +59,7 @@ test('生きているセルが横一列のとき、生きているセルが縦�
 
 test('生きているセルが、横一列 → 縦一列 → 横一列の順に遷移する', () => {
   const game = new GameOfLife(3, 3)
-  game.setCellsActive([1, 0], [1, 1], [1, 2])
+  game.setCellsAlive([1, 0], [1, 1], [1, 2])
   const board1 = game.getBoard
 
   expect(board1).toEqual([
@@ -89,7 +89,7 @@ test('生きているセルが、横一列 → 縦一列 → 横一列の順に�
 
 test('初期値のパターン1', () => {
   const game = new GameOfLife(3, 3)
-  game.setCellsActive([0, 0], [0, 1], [1, 0])
+  game.setCellsAlive([0, 0], [0, 1], [1, 0])
 
   const board1 = game.getBoard
   expect(board1).toEqual([
@@ -119,7 +119,7 @@ test('初期値のパターン1', () => {
 
 test('過密で死ぬパターン', () => {
   const game = new GameOfLife(3, 3)
-  game.setCellsActive([0, 0], [0, 1], [0, 2], [1, 0], [1, 1])
+  game.setCellsAlive([0, 0], [0, 1], [0, 2], [1, 0], [1, 1])
 
   const board1 = game.getBoard
   expect(board1).toEqual([
@@ -149,7 +149,7 @@ test('過密で死ぬパターン', () => {
 
 test('boardをresetしたとき、最初のboardを返す', () => {
   const game = new GameOfLife(3, 3)
-  game.setCellsActive([1, 0], [1, 1], [1, 2])
+  game.setCellsAlive([1, 0], [1, 1], [1, 2])
 
   game.next()
   game.next()

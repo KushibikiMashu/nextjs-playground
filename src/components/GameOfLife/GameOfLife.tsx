@@ -17,7 +17,7 @@ export const Component: React.FC<Props> = (props) => (
 const Container: React.FC<ContainerProps> = () => {
   const game = new GameOfLife(8, 8)
   // 8角形
-  game.setCellsActive(
+  game.setCellsAlive(
     [0, 3],
     [0, 4],
     [1, 2],
