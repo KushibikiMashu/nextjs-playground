@@ -1,12 +1,14 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { GITHUB_REPOSITORY_URL } from '~/src/constants'
 
 type ContainerProps = unknown
 
 type Props = {
   children?: React.ReactNode
   isTop: boolean
+  gitHubUrl: string
 }
 
 export const Component: React.FC<Props> = (props) => (
@@ -18,11 +20,8 @@ export const Component: React.FC<Props> = (props) => (
         </Link>
       </p>
       <div className="mr-8 text-sm">
-        <a
-          className="link"
-          href={`https://github.com/KushibikiMashu/nextjs-playground${props.isTop ? '' : '/tree/main/pages'}`}
-        >
-          Code
+        <a className="link" href={props.gitHubUrl}>
+          GitHub
         </a>
         <a className="ml-4 link" href="https://twitter.com/Panda_Program">
           Twitter
@@ -51,8 +50,10 @@ export const Component: React.FC<Props> = (props) => (
 const Container: React.FC<ContainerProps> = (props) => {
   const router = useRouter()
   const isTop = router.pathname === '/'
+  const path = isTop ? '' : `/blob/main/pages/${router.pathname}.tsx`
+  const gitHubUrl = GITHUB_REPOSITORY_URL + path
 
-  return <Component {...props} isTop={isTop} />
+  return <Component {...props} isTop={isTop} gitHubUrl={gitHubUrl} />
 }
 
 Container.displayName = 'Layout'
