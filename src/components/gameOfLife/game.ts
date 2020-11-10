@@ -76,5 +76,8 @@ export default class GameOfLife {
     return count
   }
 
-  private setSize = () => R.repeat([], this.cols).map(() => R.repeat(0, this.rows)) as Board
+  private setSize = (): Board => {
+    const cols = R.repeat([], this.rows)
+    return cols.map(() => R.repeat(0, this.cols))
+  }
 }

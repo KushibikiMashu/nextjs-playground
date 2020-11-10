@@ -13,9 +13,11 @@ export const Component: React.FC<Props> = (props) => (
     <div className="text-center">
       <div className="py-6">
         {props.board.map((row, i) => (
-          <div key={i}>
+          <div key={i} style={{ height: 16 }}>
             {row.map((cell, j) => (
-              <span key={j}>{props.display(cell)}</span>
+              <span key={j} className={`(${i}, ${j})`}>
+                {props.display(cell)}
+              </span>
             ))}
           </div>
         ))}

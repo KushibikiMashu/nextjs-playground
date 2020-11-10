@@ -1,6 +1,6 @@
 import GameOfLife from '../game'
 
-// TODO
+// TODOリスト
 // [+] gameをスタートする
 // [+] 3 * 3 で、縦一列のマスを作る
 // [+] 次は横一列のマスが返る
@@ -162,5 +162,17 @@ test('boardをresetしたとき、最初のboardを返す', () => {
     [0, 0, 0],
     [1, 1, 1],
     [0, 0, 0],
+  ])
+})
+
+test('縦4、横2のボードを返す', () => {
+  const game = new GameOfLife(2, 4)
+  const board = game.getBoard
+
+  expect(board).toEqual([
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
   ])
 })
