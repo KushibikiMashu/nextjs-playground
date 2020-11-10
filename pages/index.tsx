@@ -31,15 +31,16 @@ const Component: React.FC<Props> = (props) => (
 
 const Container: React.FC<ContainerProps> = () => {
   const pages = [
+    { name: 'recoil', description: 'State management of blog posts by Recoil.' },
+    { name: 'game-of-life', description: "Implementation of Conway's Game of Life." },
     {
       name: 're-render',
       description: 'How to avoid needless re-rendering.',
     },
     {
       name: 'client-fetch',
-      description: 'Fetch Blog Post from browser to Next.js server by SWR.',
+      description: 'Fetch a blog post from browser to Next.js server by SWR.',
     },
-    { name: 'game-of-life', description: "Implementation of Conway's Game of Life." },
     {
       name: 'use-reducer',
       description: 'State management with useReducer and useImmerReducer.',
