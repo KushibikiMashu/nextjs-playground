@@ -10,7 +10,7 @@ type Args = {
 
 const useGameControl = ({ duration = 50, min = 50, max = 1000, ...args }: Args) => {
   const [board, update] = useState<Board>(() => args.game.getBoard)
-  const [interval, updateInterval] = useState(0)
+  const [interval, updateInterval] = useState(500)
 
   useEffect(() => {
     if (interval === 0) {
