@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { GITHUB_REPOSITORY_URL } from '~/src/constants'
+import CustomLink from '~/src/components/_shared/CustomLink'
+import { GITHUB_REPOSITORY_URL, Paths } from '~/src/constants'
 
 type ContainerProps = unknown
 
@@ -15,9 +15,9 @@ export const Component: React.FC<Props> = (props) => (
   <div className="flex flex-col min-h-screen">
     <nav className="w-screen flex items-center justify-between bg-white border-b border-gray-200 fixed inset-x-0 z-100 h-16">
       <p className="pl-8 text-teal-600 text-xl">
-        <Link href="/">
+        <CustomLink path={Paths.top}>
           <a>Next.js Playground</a>
-        </Link>
+        </CustomLink>
       </p>
       <div className="mr-8 text-sm">
         <a className="link" href={props.gitHubUrl}>
@@ -32,9 +32,9 @@ export const Component: React.FC<Props> = (props) => (
       {props.children}
       {!props.isTop && (
         <div className="m-10 text-center">
-          <Link href="/">
+          <CustomLink path={Paths.top}>
             <a className="text-blue-600 visited:text-purple-600">Top</a>
-          </Link>
+          </CustomLink>
         </div>
       )}
     </div>

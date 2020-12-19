@@ -1,5 +1,8 @@
+import { Path, WithoutSlash } from '~/src/constants'
+
 export type Page = {
-  name: string
+  name: WithoutSlash<Path>
+  path: Path
   description: string
 }
 
