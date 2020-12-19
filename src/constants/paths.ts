@@ -12,7 +12,7 @@ export const Paths = {
 export type PathKey = keyof typeof Paths
 export type Path = typeof Paths[PathKey]
 
-export type WithoutSlash<T> = T extends `/${infer U}` ? U : never
+type WithoutSlash<T> = T extends `/${infer U}` ? U : never
 type Resource<T> = T extends `${infer U}/${infer S}` ? U | Resource<S> : T
 type DynamicRoute<T> = T extends `[${infer U}]` ? U : never
 
