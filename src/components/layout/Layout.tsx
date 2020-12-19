@@ -1,9 +1,8 @@
-import { useRouter } from 'next/router'
-import React from 'react'
+import React, { memo } from 'react'
 import CustomLink from '~/src/components/_shared/CustomLink'
 import { GITHUB_REPOSITORY_URL, Paths } from '~/src/constants'
 
-type ContainerProps = unknown
+type ContainerProps = { pathname: string }
 
 type Props = {
   children?: React.ReactNode
@@ -47,14 +46,16 @@ export const Component: React.FC<Props> = (props) => (
   </div>
 )
 
-const Container: React.FC<ContainerProps> = (props) => {
-  const router = useRouter()
-  const isTop = router.pathname === '/'
-  const path = isTop ? '' : `/blob/main/pages/${router.pathname}.tsx`
-  const gitHubUrl = GITHUB_REPOSITORY_URL + path
+const Container: React.FC<ContainerProps> = memo(
+  (props) => {
+    const isTop = props.pathname === '/'
+    const githubPath = isTop ? '' : `/blob/main/pages/${props.pathname}.tsx`
+    const gitHubUrl = GITHUB_REPOSITORY_URL + githubPath
 
-  return <Component {...props} isTop={isTop} gitHubUrl={gitHubUrl} />
-}
+    return <Component {...props} isTop={isTop} gitHubUrl={gitHubUrl} />
+  },
+  (prev, next) => prev.children === next.children
+)
 
 Container.displayName = 'Layout'
 

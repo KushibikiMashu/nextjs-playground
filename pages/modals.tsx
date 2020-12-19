@@ -5,6 +5,7 @@ import Drawer from '~/src/components/drawer'
 
 type ContainerProps = unknown
 
+// あえて分割していない
 type Props = {
   isBottomOpen: boolean
   onBottomOpen: () => void
