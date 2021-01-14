@@ -19,7 +19,7 @@ const Component: React.FC<Props> = (props) => (
       <div className="_grid mx-auto">
         {props.pages.map((page) => (
           <CustomLink path={page.path} key={page.path}>
-            <a href="https://nextjs.org/docs" className="card">
+            <a className="card">
               <h3 className="mb-4 text-2xl font-bold">{page.name} &rarr;</h3>
               <p className="m-0 text-xl leading-normal">{page.description}</p>
             </a>
