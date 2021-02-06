@@ -47,3 +47,19 @@ body {
 
 /* pages */
 @import '../src/styles/index.module.css';
+
+@keyframes slideInOut {
+  0%, 100% {right: -50px; opacity: 0;}
+  15%, 85% {right: 24px; opacity: 1;}
+}
+
+.kawaii {
+  position: fixed;
+  bottom: 80px;
+  // 順番に、animation の名前、duration、動作、回数
+  animation: slideInOut 5s ease-in-out 1;
+}
+
+.kawaii:hover {
+  animation-play-state: paused;
+}
