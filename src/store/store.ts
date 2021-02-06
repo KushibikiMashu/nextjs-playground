@@ -8,7 +8,7 @@ import { UIState } from './ui'
 
 let store
 
-type InitialState = {
+export type InitialState = {
   app: AppState
   ui: UIState
 }

@@ -1,5 +1,6 @@
 export const Paths = {
   top: '/',
+  redux: '/redux',
   'i18n-blog/first-blog': '/i18n-blog/first-blog',
   recoil: '/recoil',
   gameOfLife: '/game-of-life',

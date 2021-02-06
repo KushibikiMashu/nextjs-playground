@@ -33,10 +33,14 @@ const Component: React.FC<Props> = (props) => (
 const Container: React.FC<ContainerProps> = () => {
   const pages = [
     {
+      path: Paths.redux,
+      description: 'State management with Redux and Redux Thunk',
+    },
+    {
       path: Paths['i18n-blog/first-blog'],
       description: 'A Blog post written in English and Japanese, supporting i18n.',
     },
-    { path: Paths.recoil, description: 'State management of blog posts by Recoil.' },
+    { path: Paths.recoil, description: 'State management of blog posts with Recoil.' },
     { path: Paths.gameOfLife, description: "Implementation of Conway's Game of Life." },
     {
       path: Paths.rerender,
