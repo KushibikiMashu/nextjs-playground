@@ -2,7 +2,7 @@
 const TICK = 'APP::TIMER_TICK'
 
 // actions
-export const serverRenderClick = () => (dispatch) =>
+export const serverRenderClock = () => (dispatch) =>
   dispatch({
     type: TICK,
     payload: { light: false, ts: Date.now() },
