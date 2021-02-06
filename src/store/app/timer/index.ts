@@ -1,5 +1,5 @@
 // types
-const TICK = 'APP::TIMER_TICK'
+export const TICK = 'APP::TIMER_TICK'
 
 // actions
 export const serverRenderClock = () => (dispatch) =>
@@ -15,14 +15,14 @@ export const startClock = () => (dispatch) =>
     })
   }, 1000)
 
-// reducer
+// state
 const initialState = {
   lastUpdate: 0,
   light: false,
 }
-
 export type State = typeof initialState
 
+// reducer
 export const reducer = (state: State = initialState, action) => {
   switch (action.type) {
     case TICK:
