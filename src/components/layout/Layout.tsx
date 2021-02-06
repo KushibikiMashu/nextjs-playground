@@ -49,7 +49,7 @@ export const Component: React.FC<Props> = (props) => (
 const Container: React.FC<ContainerProps> = memo(
   (props) => {
     const isTop = props.pathname === '/'
-    const githubPath = isTop ? '' : `/blob/main/pages/${props.pathname}.tsx`
+    const githubPath = isTop ? '' : `/blob/main/pages${props.pathname}.tsx`
     const gitHubUrl = GITHUB_REPOSITORY_URL + githubPath
 
     return <Component {...props} isTop={isTop} gitHubUrl={gitHubUrl} />
