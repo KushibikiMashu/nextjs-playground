@@ -137,7 +137,7 @@ const Container: React.FC<ContainerProps> = memo(
     const gitHubUrl = GITHUB_REPOSITORY_URL + githubPath
 
     // タイマーに表示する時間
-    const _time = (tickCount === 0 ? new Date() : new Date(lastUpdate)).toLocaleString('ja-JP').slice(9)
+    const _time = (tickCount === 0 ? new Date() : new Date(lastUpdate)).toLocaleString('ja-JP').slice(9, 17)
     const time = _time.length === 7 ? '0' + _time : _time
 
     return <Component {...props} timerFlag={timerFlag} isTop={isTop} gitHubUrl={gitHubUrl} time={time} />
