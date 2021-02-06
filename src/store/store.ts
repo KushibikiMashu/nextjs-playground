@@ -2,12 +2,18 @@ import { useMemo } from 'react'
 import { applyMiddleware, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
-import { AppInitialState } from './app'
+import { AppState } from './app'
 import reducers from './reducers'
+import { UIState } from './ui'
 
 let store
 
-const initStore = (initialState: AppInitialState) => {
+type InitialState = {
+  app: AppState
+  ui: UIState
+}
+
+const initStore = (initialState: InitialState) => {
   return createStore(reducers, initialState, composeWithDevTools(applyMiddleware(thunk)))
 }
 
