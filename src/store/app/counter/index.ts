@@ -9,7 +9,9 @@ export const decrementCount = () => ({ type: DECREMENT })
 export const resetCount = () => ({ type: RESET })
 
 // reducer
-export const reducer = (state = 0, { type }) => {
+export type InitialState = number
+
+export const reducer = (state: InitialState = 0, { type }) => {
   switch (type) {
     case INCREMENT:
       return state + 1

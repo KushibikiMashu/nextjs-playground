@@ -16,6 +16,11 @@ export const startClock = () => (dispatch) =>
   }, 1000)
 
 // reducer
+export type InitialState = {
+  lastUpdate: number
+  light: boolean
+}
+
 const initialState = {
   lastUpdate: 0,
   light: false,
