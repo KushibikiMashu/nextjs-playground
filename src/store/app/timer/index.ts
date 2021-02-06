@@ -16,17 +16,14 @@ export const startClock = () => (dispatch) =>
   }, 1000)
 
 // reducer
-export type InitialState = {
-  lastUpdate: number
-  light: boolean
-}
-
 const initialState = {
   lastUpdate: 0,
   light: false,
 }
 
-export const reducer = (state = initialState, action) => {
+export type State = typeof initialState
+
+export const reducer = (state: State = initialState, action) => {
   switch (action.type) {
     case TICK:
       return {

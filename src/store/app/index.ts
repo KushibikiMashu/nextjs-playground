@@ -1,9 +1,9 @@
-import { InitialState as CounterInitialState, reducer as counterReducer } from './counter'
-import { InitialState as TimerInitialState, reducer as timerReducer } from './timer'
+import { State as CounterState, reducer as counterReducer } from './counter'
+import { State as TimerState, reducer as timerReducer } from './timer'
 
-export type AppInitialState = {
-  counter: CounterInitialState
-  timer: TimerInitialState
+export type AppState = {
+  counter: CounterState
+  timer: TimerState
 }
 
 export const appReducers = {
