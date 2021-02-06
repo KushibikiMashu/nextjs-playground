@@ -91,12 +91,9 @@ export const Component: React.FC<Props> = memo((props) => (
 
       {/* timer */}
       <div
-        className={`fixed bg-black px-4 py-2 rounded-t-md`}
+        className="timer"
         style={{
-          bottom: 0,
-          right: 24,
-          fontFamily: 'menlo, monaco, monospace',
-          color: props.timerFlag ? '#FFFFFF' : '#86EFAC',
+          color: props.timerFlag ? '#86EFAC' : '#FFFFFF',
         }}
       >
         <time dateTime={props.time}>{props.time}</time>
