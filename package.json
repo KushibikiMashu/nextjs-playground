@@ -9,7 +9,8 @@
     "fix": "prettier --write './**/*.{js,jsx,ts,tsx}'",
     "lint": "eslint . --cache --fix",
     "storybook": "start-storybook",
-    "build-storybook": "build-storybook -p 6006"
+    "build-storybook": "build-storybook -p 6006",
+    "cy:open": "cypress open"
   },
   "husky": {
     "hooks": {
