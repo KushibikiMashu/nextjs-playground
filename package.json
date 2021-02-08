@@ -7,13 +7,16 @@
     "start": "next start",
     "test": "jest",
     "fix": "prettier --write './**/*.{js,jsx,ts,tsx}'",
-    "lint": "eslint . --cache --fix",
+    "lint": "eslint . --cache",
+    "lint:fix": "eslint . --cache --fix",
     "storybook": "start-storybook",
     "build-storybook": "build-storybook -p 6006",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "e2e:local": "start-server-and-test dev http://localhost:3000 cy:run",
-    "e2e": "start-server-and-test start http://localhost:3000 cy:run"
+    "e2e:ci": "npm run build && start-server-and-test start http://localhost:3000 cy:run",
+    "tsc": "tsc",
+    "ci": "run-p test tsc lint e2e:ci"
   },
   "husky": {
     "hooks": {
@@ -74,6 +77,7 @@
     "lint-staged": "^10.5.4",
     "msw": "^0.26.1",
     "npm-check-updates": "^11.1.1",
+    "npm-run-all": "^4.1.5",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.2.1",
