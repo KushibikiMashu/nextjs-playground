@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
-    "dev:p": "next -p 3003",
     "build": "next build",
     "start": "next start",
     "test": "jest",
@@ -13,7 +12,8 @@
     "build-storybook": "build-storybook -p 6006",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "e2e:local": "start-server-and-test dev:p http://localhost:3003 cy:run"
+    "e2e:local": "start-server-and-test dev http://localhost:3000 cy:run",
+    "e2e": "start-server-and-test start http://localhost:3000 cy:run"
   },
   "husky": {
     "hooks": {
