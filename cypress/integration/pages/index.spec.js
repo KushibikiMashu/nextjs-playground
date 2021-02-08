@@ -8,7 +8,7 @@ context('トップページ', () => {
     cy.visit('/')
   })
 
-  context('header', () => {
+  describe('header', () => {
     it('サイト名が表示されている', () => {
       cy.get('nav').contains('Next.js Playground')
     })
@@ -22,7 +22,7 @@ context('トップページ', () => {
     })
   })
 
-  context('main', () => {
+  describe('main', () => {
     it('各ページへのリンクが壊れていない', () => {
       cy.get('main')
         .find('a')
@@ -33,13 +33,13 @@ context('トップページ', () => {
     })
   })
 
-  context('footer', () => {
+  describe('footer', () => {
     it('footer に Twitter名が表示されている', () => {
       cy.get('footer').contains('@Panda_Program').should('have.attr', 'href', twitter)
     })
   })
 
-  context('global ui', () => {
+  describe('global ui', () => {
     it('01:00 のとき、時計は 01:00:00 を表示する', () => {
       const timestamp = new Date(2020, 1, 1, 1, 0, 0).getTime()
       cy.clock(timestamp)
