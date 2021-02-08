@@ -11,7 +11,7 @@ type Props = {
 
 const Component: React.FC<Props> = (props) => (
   <div>
-    <main className="pb-6 main">
+    <div className="pb-6 main">
       <Greeting target={'Next.js Playground'} />
 
       <h2 className="py-2 text-center text-2xl">Pages / APIs</h2>
@@ -26,7 +26,7 @@ const Component: React.FC<Props> = (props) => (
           </CustomLink>
         ))}
       </div>
-    </main>
+    </div>
   </div>
 )
 

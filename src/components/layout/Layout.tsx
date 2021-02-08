@@ -79,7 +79,7 @@ export const Component: React.FC<Props> = memo((props) => (
         </a>
       </div>
     </nav>
-    <div className="flex-grow pt-24">
+    <main className="flex-grow pt-24">
       {props.children}
       {!props.isTop && (
         <div className="m-10 text-center">
@@ -88,20 +88,20 @@ export const Component: React.FC<Props> = memo((props) => (
           </CustomLink>
         </div>
       )}
+    </main>
 
-      {/* timer */}
-      <div
-        className="timer"
-        style={{
-          color: props.timerFlag ? '#86EFAC' : '#FFFFFF',
-        }}
-      >
-        <time dateTime={props.time}>{props.time}</time>
-      </div>
-
-      {/* react kawaii */}
-      <Kawaii shown={props.timerFlag} />
+    {/* timer */}
+    <div
+      className="timer"
+      style={{
+        color: props.timerFlag ? '#86EFAC' : '#FFFFFF',
+      }}
+    >
+      <time dateTime={props.time}>{props.time}</time>
     </div>
+
+    {/* react kawaii */}
+    <Kawaii shown={props.timerFlag} />
     <footer className="py-8 flex justify-center items-center border-t border-gray-200">
       Created By{' '}
       <a className="ml-2 text-blue-600 visited:text-purple-600" href="https://twitter.com/Panda_Program">
