@@ -38,4 +38,18 @@ context('トップページ', () => {
       cy.get('footer').contains('@Panda_Program').should('have.attr', 'href', twitter)
     })
   })
+
+  context('global ui', () => {
+    it('01:00 のとき、時計は 01:00:00 を表示する', () => {
+      const timestamp = new Date(2020, 1, 1, 1, 0, 0).getTime()
+      cy.clock(timestamp)
+      cy.contains('01:00:00')
+    })
+
+    it('13:00 のとき、時計は 13:00:00 を表示する', () => {
+      const timestamp = new Date(2020, 1, 1, 13, 0, 0).getTime()
+      cy.clock(timestamp)
+      cy.contains('13:00:00')
+    })
+  })
 })
