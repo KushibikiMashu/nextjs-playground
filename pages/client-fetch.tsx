@@ -14,7 +14,7 @@ export const Component: React.FC<Props> = (props) => (
   <div className="py-12 text-center">
     {!props.post ? (
       <div className="py-8">
-        <CircularProgress />
+        <CircularProgress data-qa="loading" />
       </div>
     ) : (
       <>
