@@ -1,4 +1,4 @@
-import './style.scss'
+import '~/src/assets/style.scss'
 import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { Provider } from 'react-redux'
