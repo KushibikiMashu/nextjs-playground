@@ -2,7 +2,6 @@
 
 context('/redux', () => {
   beforeEach(() => {
-    // setInterval を止める
     cy.visit('/')
     cy.contains('redux').click()
   })

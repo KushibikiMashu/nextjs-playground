@@ -42,6 +42,7 @@ context('トップページ', () => {
   describe('global ui', () => {
     it('01:00 のとき、時計は 01:00:00 を表示する', () => {
       const timestamp = new Date(2020, 1, 1, 1, 0, 0).getTime()
+      // clock() で現在時刻を設定する
       cy.clock(timestamp)
       cy.contains('01:00:00')
     })
