@@ -6,7 +6,7 @@ type Blog = { title: string; body: string; appendix: string }
 type Props = { blog: Blog; slug: string }
 
 const Component: React.FC<Props> = (props) => (
-  <main className="mx-auto text-center max-w-md">
+  <div className="mx-auto text-center max-w-md">
     <article>
       <h1 className="text-3xl font-bold">{props.blog.title}</h1>
       <p className="py-2">{props.blog.body}</p>
@@ -31,7 +31,7 @@ const Component: React.FC<Props> = (props) => (
         </Link>
       </li>
     </ul>
-  </main>
+  </div>
 )
 
 export const getStaticProps = (props) => {

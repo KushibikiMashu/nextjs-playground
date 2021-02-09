@@ -13,7 +13,7 @@ type Props = {
 }
 
 const Component: React.FC<Props> = (props) => (
-  <main className="my-4 mx-auto max-w-lg">
+  <div className="my-4 mx-auto max-w-lg">
     <h1 className="text-2xl font-bold pb-2">Redux State</h1>
     <pre className="bg-gray-200 text-black rounded-md p-4">
       <code>{JSON.stringify(props.state, null, 4)}</code>
@@ -36,7 +36,7 @@ const Component: React.FC<Props> = (props) => (
         </div>
       </div>
     </div>
-  </main>
+  </div>
 )
 
 const Container: React.FC<ContainerProps> = () => {

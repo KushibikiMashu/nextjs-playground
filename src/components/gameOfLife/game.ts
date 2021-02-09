@@ -24,10 +24,11 @@ export default class GameOfLife {
 
   setCellsAlive = (...args: [number, number][]) => {
     const newBoard = R.clone(this.board)
-    args.map((arg) => {
+
+    for (const arg of args) {
       const [col, row] = arg
       newBoard[col][row] = 1
-    })
+    }
 
     this.board = newBoard
     this.initialBoard = newBoard
