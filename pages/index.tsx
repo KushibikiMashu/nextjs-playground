@@ -36,29 +36,29 @@ const Container: React.FC<ContainerProps> = () => {
     },
     {
       path: Paths['i18n-blog/first-blog'],
-      description: 'A Blog post written in English and Japanese, supporting i18n.',
+      description: 'A Blog post written in English and Japanese, supporting i18n',
     },
-    { path: Paths.recoil, description: 'State management of blog posts with Recoil.' },
-    { path: Paths.gameOfLife, description: "Implementation of Conway's Game of Life." },
+    { path: Paths.recoil, description: 'State management of blog posts with Recoil' },
+    { path: Paths.gameOfLife, description: "Implementation of Conway's Game of Life" },
     {
       path: Paths.rerender,
-      description: 'How to avoid needless re-rendering.',
+      description: 'How to avoid needless re-rendering',
     },
     {
       path: Paths.clientFetch,
-      description: 'Fetch a blog post from browser to Next.js server by SWR.',
+      description: 'Fetch a blog post from browser to Next.js server by SWR',
     },
     {
       path: Paths.useReducer,
-      description: 'State management with useReducer and useImmerReducer.',
+      description: 'State management with useImmerReducer',
     },
     {
       path: Paths.modals,
-      description: 'An Implementation of Modal, Drawer and Dialog with Material UI.',
+      description: 'An Implementation of Modal, Drawer and Dialog with Material UI',
     },
     {
       path: Paths['api/posts'],
-      description: 'An Endpoint that returns Post data with API Routes by Next.js feature.',
+      description: 'An Endpoint that returns Post data with API Routes by Next.js feature',
     },
   ].map((page) => ({
     ...page,
