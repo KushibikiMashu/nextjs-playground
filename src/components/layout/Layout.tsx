@@ -1,6 +1,6 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
-import { Backpack, Ghost, IceCream } from 'react-kawaii'
+import React, { memo, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Kawaii from './Kawaii'
 import CustomLink from '~/src/components/_shared/CustomLink'
 import { GITHUB_REPOSITORY_URL, Paths } from '~/src/constants'
 import { startClock } from '~/src/store/app/timer'
@@ -13,52 +13,6 @@ type Props = {
   gitHubUrl: string
   timerFlag: boolean
   time: string
-}
-
-// react kawaii
-const Kawaii = (props) => {
-  const ref = useRef({
-    isFirstTime: true,
-    index: 0,
-  })
-  const [canDisplay, display] = useState(false)
-
-  const common = { size: 160 }
-  const components = [
-    <Backpack {...common} mood="excited" color="#FFD882" key={0} />,
-    <Ghost {...common} mood="blissful" color="#E0E4E8" key={1} />,
-    <IceCream {...common} mood="blissful" color="#FDA7DC" key={2} />,
-  ]
-
-  useEffect(() => {
-    display(true)
-  }, [props.shown])
-
-  useEffect(() => {
-    setTimeout(() => {
-      display(false)
-      // shuffle
-      const index = Math.floor(Math.random() * Math.floor(components.length))
-      ref.current = {
-        isFirstTime: false,
-        index,
-      }
-    }, 4900)
-  }, [props.shown])
-
-  return (
-    <div
-      className="kawaii"
-      style={{
-        // 初回アクセス時は表示しない
-        display: !ref.current.isFirstTime && canDisplay ? 'block' : 'none',
-      }}
-    >
-      <a href="https://react-kawaii.now.sh/" target="_blank" rel="noopener noreferrer">
-        {components[ref.current.index]}
-      </a>
-    </div>
-  )
 }
 
 // eslint-disable-next-line react/display-name
@@ -137,7 +91,7 @@ const Container: React.FC<ContainerProps> = memo(
     const gitHubUrl = GITHUB_REPOSITORY_URL + githubPath
 
     // タイマーに表示する時間
-    const _time = (tickCount === 0 ? new Date() : new Date(lastUpdate)).toLocaleString('ja-JP').slice(-8)
+    const _time = (tickCount === 0 ? new Date() : new Date(lastUpdate)).toLocaleString('ja-JP').slice(-8).trim()
     const time = _time.length === 7 ? '0' + _time : _time
 
     return <Component {...props} timerFlag={timerFlag} isTop={isTop} gitHubUrl={gitHubUrl} time={time} />
