@@ -5,20 +5,20 @@ export const TICK = 'APP::TIMER_TICK'
 export const serverRenderClock = () => (dispatch) =>
   dispatch({
     type: TICK,
-    payload: { light: false, ts: Date.now() },
+    payload: { ts: Date.now() },
   })
 export const startClock = () => (dispatch) =>
   setInterval(() => {
     dispatch({
       type: TICK,
-      payload: { light: true, ts: Date.now() },
+      payload: { ts: Date.now() },
     })
   }, 1000)
 
 // state
 const initialState = {
   lastUpdate: 0,
-  light: false,
+  tickCount: 0,
 }
 export type State = typeof initialState
 
@@ -28,7 +28,7 @@ export const reducer = (state: State = initialState, action) => {
     case TICK:
       return {
         lastUpdate: action.payload.ts,
-        light: !!action.payload.light,
+        tickCount: state.tickCount + 1,
       }
     default:
       return state
