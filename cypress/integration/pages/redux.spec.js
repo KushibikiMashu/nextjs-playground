@@ -72,6 +72,28 @@ context('/redux', () => {
   })
 
   context('ui', () => {
-    xit('tickCount の値をテストする', () => {})
+    const timestamp = new Date(2020, 1, 1, 12, 0, 0).getTime()
+    const getText = (status) => `"kawaiiStatus": "${status}"`
+
+    it('kawaiiStatus の初期状態は idleである', () => {
+      cy.clock(timestamp)
+      cy.contains(getText('idle'))
+    })
+
+    it('kawaiiStatus の idle が 30秒目に fired に変わる', () => {
+      cy.clock(timestamp)
+      cy.contains(getText('idle'))
+
+      // 30秒進める
+      cy.wait(1000 * 30)
+      cy.contains(getText('fired'))
+
+      // React Kawaii のコンポーネントを表示する
+      cy.get('[data-qa=kawaii]').should('be.visible')
+
+      // 1秒進める
+      cy.wait(1000)
+      cy.contains(getText('idle'))
+    })
   })
 })
