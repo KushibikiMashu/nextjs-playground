@@ -6,7 +6,7 @@ type Ref = {
   index: number
 }
 
-type ContainerProps = { shown: boolean }
+type ContainerProps = { fired: boolean }
 
 type Props = PropsWithChildren<{
   canDisplay: boolean
@@ -44,7 +44,7 @@ const Container: React.FC<ContainerProps> = (props) => {
 
   useEffect(() => {
     display(true)
-  }, [props.shown])
+  }, [props.fired])
 
   useEffect(() => {
     setTimeout(() => {
@@ -56,7 +56,7 @@ const Container: React.FC<ContainerProps> = (props) => {
         index,
       }
     }, 4900)
-  }, [props.shown])
+  }, [props.fired])
 
   return (
     <Component canDisplay={canDisplay} customRef={ref}>

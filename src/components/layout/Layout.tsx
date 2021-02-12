@@ -4,6 +4,7 @@ import Kawaii from './Kawaii'
 import CustomLink from '~/src/components/_shared/CustomLink'
 import { GITHUB_REPOSITORY_URL, Paths } from '~/src/constants'
 import { startClock } from '~/src/store/app/timer'
+import { kawaiiFire, kawaiiIdle } from '~/src/store/ui/kawaii'
 
 type ContainerProps = { pathname: string }
 
@@ -13,6 +14,7 @@ type Props = {
   gitHubUrl: string
   timerFlag: boolean
   time: string
+  isKawaiiFired: boolean
 }
 
 // eslint-disable-next-line react/display-name
@@ -55,7 +57,7 @@ export const Component: React.FC<Props> = memo((props) => (
     </div>
 
     {/* react kawaii */}
-    <Kawaii shown={props.timerFlag} />
+    <Kawaii fired={props.isKawaiiFired} />
     <footer className="py-8 flex justify-center items-center border-t border-gray-200">
       Created By{' '}
       <a className="ml-2 text-blue-600 visited:text-purple-600" href="https://twitter.com/Panda_Program">
@@ -67,7 +69,7 @@ export const Component: React.FC<Props> = memo((props) => (
 
 const Container: React.FC<ContainerProps> = memo(
   (props) => {
-    const { tickCount } = useSelector((state) => state.ui)
+    const { tickCount, kawaiiStatus } = useSelector((state) => state.ui)
     const { lastUpdate } = useSelector((state) => state.app.timer)
     const dispatch = useDispatch()
     // timer の色を変えるフラグ
@@ -79,10 +81,14 @@ const Container: React.FC<ContainerProps> = memo(
 
     // tick の回数 30 回ごとにフラグを toggle する
     useEffect(() => {
-      const canDivideBySixty = tickCount !== 0 && tickCount % 30 === 0
-      if (canDivideBySixty) {
+      const canDivideByThirty = tickCount !== 0 && tickCount % 30 === 0
+      if (canDivideByThirty) {
         setTimerFlag((state) => !state)
+        dispatch(kawaiiFire())
+        return
       }
+
+      dispatch(kawaiiIdle())
     }, [tickCount])
 
     // link
@@ -94,7 +100,19 @@ const Container: React.FC<ContainerProps> = memo(
     const _time = (tickCount === 0 ? new Date() : new Date(lastUpdate)).toLocaleString('ja-JP').slice(-8).trim()
     const time = _time.length === 7 ? '0' + _time : _time
 
-    return <Component {...props} timerFlag={timerFlag} isTop={isTop} gitHubUrl={gitHubUrl} time={time} />
+    // kawaii を表示するタイミング
+    const isKawaiiFired = kawaiiStatus === 'fired'
+
+    return (
+      <Component
+        {...props}
+        timerFlag={timerFlag}
+        isTop={isTop}
+        gitHubUrl={gitHubUrl}
+        time={time}
+        isKawaiiFired={isKawaiiFired}
+      />
+    )
   },
   (prev, next) => prev.children === next.children
 )
