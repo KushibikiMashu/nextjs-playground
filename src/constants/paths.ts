@@ -5,7 +5,7 @@ export const Paths = {
   recoil: '/recoil',
   gameOfLife: '/game-of-life',
   rerender: '/re-render',
-  clientFetch: '/client-fetch',
+  swr: '/swr',
   useReducer: '/use-reducer',
   modals: '/modals',
   'api/posts': '/api/posts',

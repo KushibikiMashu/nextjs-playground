@@ -48,6 +48,6 @@ const Container: React.FC<ContainerProps> = () => {
   return <Component post={post} onClick={handleClick} />
 }
 
-Container.displayName = 'ClientFetchPage'
+Container.displayName = 'SwrPage'
 
 export default Container

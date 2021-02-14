@@ -1,9 +1,9 @@
 /// <reference types="cypress" />
 
-context('/client-fetch', () => {
+context('/swr', () => {
   beforeEach(() => {
     cy.visit('/')
-    cy.contains('client-fetch').click()
+    cy.contains('swr').click()
   })
 
   context('fetch', () => {
@@ -31,11 +31,11 @@ context('/client-fetch', () => {
     })
 
     // Post 1 は SWR のキャッシュを利用して表示するため、ローダーを表示せずに済む
-    it('トップページへ行き、/client-fetch に戻ると、loader を表示せず記事1を表示する', () => {
+    it('トップページへ行き、/swr に戻ると、loader を表示せず記事1を表示する', () => {
       cy.intercept('/api/posts/1', { delay: 500, fixture: 'post.json' })
 
       cy.contains('Top').click()
-      cy.contains('client-fetch').click()
+      cy.contains('swr').click()
 
       cy.get(loader).should('not.exist')
       cy.contains('1: Javascript')

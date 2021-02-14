@@ -45,7 +45,7 @@ const Container: React.FC<ContainerProps> = () => {
       description: 'How to avoid needless re-rendering',
     },
     {
-      path: Paths.clientFetch,
+      path: Paths.swr,
       description: 'Fetch a blog post from browser to Next.js server by SWR',
     },
     {

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
-import ClientFetch from '~/pages/client-fetch'
+import Swr from '~/pages/swr'
 import { posts } from '~/src/data'
 import usePost from '~/src/hooks/usePost'
 
@@ -12,13 +12,13 @@ usePost.mockImplementation(() => ({
 }))
 
 test('コンポーネントを描画する', async () => {
-  render(<ClientFetch />)
+  render(<Swr />)
 
   expect(screen.getByText('Just click the button above 6 times!')).toBeInTheDocument()
 })
 
 test('IDが1の post を描画する', async () => {
-  render(<ClientFetch />)
+  render(<Swr />)
 
   expect(screen.getByText(posts[0].body)).toBeInTheDocument()
 })
