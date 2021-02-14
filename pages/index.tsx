@@ -31,7 +31,7 @@ const Component: React.FC<Props> = (props) => (
 const Container: React.FC<ContainerProps> = () => {
   const pages = [
     {
-      path: Paths['/client-fetch'],
+      path: Paths['client-fetch'],
       description: 'Fetch data by fetch, swr and redux-thunk',
     },
     {
