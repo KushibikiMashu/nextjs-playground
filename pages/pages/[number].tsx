@@ -18,6 +18,9 @@ const PrevNextNav = ({ disabled, label, page }) => (
   </>
 )
 
+// https://qiita.com/RyutaKojima/items/168632d4980e65a285f3#arrayfrom%E3%82%92%E4%BD%BF%E3%81%86
+const range = (start, end) => Array.from({ length: end - start + 1 }, (_, i) => start + i)
+
 export default function Pages() {
   const router = useRouter()
   const { number } = router.query
@@ -32,14 +35,15 @@ export default function Pages() {
   const isFirstPage = activePage === 1
   const isLastPage = activePage === totalPages
 
-  // https://qiita.com/RyutaKojima/items/168632d4980e65a285f3#arrayfrom%E3%82%92%E4%BD%BF%E3%81%86
-  const range = (start, end) => Array.from({ length: end - start + 1 }, (_, i) => start + i)
   const getNavPages = () => {
     // 個数が少ないとき
     // length === 1 | 1 []
     // length === 2 | 1 [] 2
     // length === 3 | 1 [2] 3
     // length === 4 | 1 [2, 3] 4
+    // length === 5 | 1 [2, 3, 4] 5
+    // length === 6 | 1 [2, 3, 4, 5] 6
+    // length === 7 | 1 [2, 3, 4, 5, 6] 7
     if (totalPages === 1) {
       return []
     } else if (totalPages > 1 && totalPages <= 7) {
@@ -48,6 +52,7 @@ export default function Pages() {
     }
 
     // length > 4 のとき
+    // UI では null を「...」で表現する
     // 1. 1 [2, 3, 4, 5, null] 12     | active = 4 | 1 < active <= 1 + 3
     // 2. 1 [null, 4, 5, 6, null] 12  | active = 5 | 1 + 3 < active && active < last - 3
     // 3. 1 [null, 8, 9, 10, 11] 12   | active = 9 | last - 3 <= active < last
