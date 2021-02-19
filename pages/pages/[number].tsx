@@ -2,10 +2,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-const PrevNextNav = ({ disabled, label, page }) => (
+const PrevNextNav = ({ disabled, label, page }: { disabled: boolean; label: '前へ' | '次へ'; page: number }) => (
   <>
     {disabled ? (
-      <span>{label}</span>
+      <span className="text-gray-700">{label}</span>
     ) : (
       <Link href={`/pages/${page}`}>
         <a>
@@ -18,8 +18,95 @@ const PrevNextNav = ({ disabled, label, page }) => (
   </>
 )
 
+type PaginationProps = {
+  activePage: number
+  totalPages: number
+  navPages: (number | null)[]
+  isFirstPage: boolean
+  isLastPage: boolean
+}
+
+const Pagination: React.FC<PaginationProps> = (props) => (
+  <nav style={{ margin: '20px 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    {props.totalPages > 1 && <PrevNextNav disabled={props.isFirstPage} label="前へ" page={props.activePage - 1} />}
+
+    <ul style={{ display: 'flex', listStyle: 'none', paddingRight: 32 }}>
+      <li style={{ padding: '0 4px' }}>
+        {props.isFirstPage ? (
+          <u>1</u>
+        ) : (
+          <Link href={`/pages/1`}>
+            <a>1</a>
+          </Link>
+        )}
+      </li>
+
+      {props.navPages.map((page, i) => (
+        <li style={{ padding: '0 4px' }} key={i}>
+          {page === null ? (
+            <span>...</span>
+          ) : page === props.activePage ? (
+            <u>{page}</u>
+          ) : (
+            <Link href={`/pages/${page}`}>
+              <a>{page}</a>
+            </Link>
+          )}
+        </li>
+      ))}
+
+      {props.totalPages > 1 && (
+        <li style={{ padding: '0 4px' }}>
+          {props.isLastPage ? (
+            <u>{props.totalPages}</u>
+          ) : (
+            <Link href={`/pages/${props.totalPages}`}>
+              <a>{props.totalPages}</a>
+            </Link>
+          )}
+        </li>
+      )}
+    </ul>
+
+    {props.totalPages > 1 && <PrevNextNav disabled={props.isLastPage} label="次へ" page={props.activePage + 1} />}
+  </nav>
+)
+
 // https://qiita.com/RyutaKojima/items/168632d4980e65a285f3#arrayfrom%E3%82%92%E4%BD%BF%E3%81%86
 const range = (start, end) => Array.from({ length: end - start + 1 }, (_, i) => start + i)
+
+const getNavPages = ({ totalPages, activePage }: { activePage: number; totalPages: number }): (number | null)[] => {
+  // 個数が少ないとき
+  // length === 1 | 1 []
+  // length === 2 | 1 [] 2
+  // length === 3 | 1 [2] 3
+  // length === 4 | 1 [2, 3] 4
+  // length === 5 | 1 [2, 3, 4] 5
+  // length === 6 | 1 [2, 3, 4, 5] 6
+  // length === 7 | 1 [2, 3, 4, 5, 6] 7
+  if (totalPages === 1) {
+    return []
+  } else if (totalPages > 1 && totalPages <= 7) {
+    // [] or [2] or [2, 3] を返す
+    return range(2, totalPages - 1)
+  }
+
+  // length > 4 のとき
+  // UI では null を「...」で表現する
+  // 1. 1 [2, 3, 4, 5, null] 12     | active = 4 | 1 < active <= 1 + 3
+  // 2. 1 [null, 4, 5, 6, null] 12  | active = 5 | 1 + 3 < active && active < last - 3
+  // 3. 1 [null, 8, 9, 10, 11] 12   | active = 9 | last - 3 <= active < last
+  if (activePage <= 4) {
+    // 1のパターン
+    return [...range(2, 5), null]
+  } else if (activePage >= totalPages - 3) {
+    // 3のパターン
+    return [null, ...range(totalPages - 4, totalPages - 1)]
+  }
+
+  // 2のパターン
+  return [null, ...range(activePage - 1, activePage + 1), null]
+}
 
 export default function Pages() {
   const router = useRouter()
@@ -35,38 +122,7 @@ export default function Pages() {
   const isFirstPage = activePage === 1
   const isLastPage = activePage === totalPages
 
-  const getNavPages = () => {
-    // 個数が少ないとき
-    // length === 1 | 1 []
-    // length === 2 | 1 [] 2
-    // length === 3 | 1 [2] 3
-    // length === 4 | 1 [2, 3] 4
-    // length === 5 | 1 [2, 3, 4] 5
-    // length === 6 | 1 [2, 3, 4, 5] 6
-    // length === 7 | 1 [2, 3, 4, 5, 6] 7
-    if (totalPages === 1) {
-      return []
-    } else if (totalPages > 1 && totalPages <= 7) {
-      // [] or [2] or [2, 3] を返す
-      return range(2, totalPages - 1)
-    }
-
-    // length > 4 のとき
-    // UI では null を「...」で表現する
-    // 1. 1 [2, 3, 4, 5, null] 12     | active = 4 | 1 < active <= 1 + 3
-    // 2. 1 [null, 4, 5, 6, null] 12  | active = 5 | 1 + 3 < active && active < last - 3
-    // 3. 1 [null, 8, 9, 10, 11] 12   | active = 9 | last - 3 <= active < last
-    if (activePage <= 4) {
-      // 1のパターン
-      return [...range(2, 5), null]
-    } else if (activePage >= totalPages - 3) {
-      // 3のパターン
-      return [null, ...range(totalPages - 4, totalPages - 1)]
-    }
-
-    // 2のパターン
-    return [null, ...range(activePage - 1, activePage + 1), null]
-  }
+  const navPages = getNavPages({ totalPages, activePage })
 
   if (activePage > totalPages) {
     return 404
@@ -74,49 +130,13 @@ export default function Pages() {
 
   return (
     <div style={{ margin: '20px 0' }}>
-      <nav style={{ margin: '20px 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        {totalPages > 1 && <PrevNextNav disabled={isFirstPage} label="前へ" page={activePage - 1} />}
-
-        <ul style={{ display: 'flex', listStyle: 'none', paddingRight: 32 }}>
-          <li style={{ padding: '0 4px' }}>
-            {isFirstPage ? (
-              <u>1</u>
-            ) : (
-              <Link href={`/pages/1`}>
-                <a>1</a>
-              </Link>
-            )}
-          </li>
-
-          {getNavPages().map((page, i) => (
-            <li style={{ padding: '0 4px' }} key={i}>
-              {page === null ? (
-                <span>...</span>
-              ) : page === activePage ? (
-                <u>{page}</u>
-              ) : (
-                <Link href={`/pages/${page}`}>
-                  <a>{page}</a>
-                </Link>
-              )}
-            </li>
-          ))}
-
-          {totalPages > 1 && (
-            <li style={{ padding: '0 4px' }}>
-              {isLastPage ? (
-                <u>{totalPages}</u>
-              ) : (
-                <Link href={`/pages/${totalPages}`}>
-                  <a>{totalPages}</a>
-                </Link>
-              )}
-            </li>
-          )}
-        </ul>
-
-        {totalPages > 1 && <PrevNextNav disabled={isLastPage} label="次へ" page={activePage + 1} />}
-      </nav>
+      <Pagination
+        activePage={activePage}
+        totalPages={totalPages}
+        navPages={navPages}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+      />
 
       <div className="space-y-2 text-center">
         <p>min: 1 ~ max: 150</p>
