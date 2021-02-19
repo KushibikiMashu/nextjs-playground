@@ -114,7 +114,6 @@ export default function Pages() {
 
   const [size, setSize] = React.useState(10)
 
-  // data
   const length = data.length
   const totalPages = Math.ceil(length / size)
   const activePage = Number(number)
@@ -125,7 +124,14 @@ export default function Pages() {
   const navPages = getNavPages({ totalPages, activePage })
 
   if (activePage > totalPages) {
-    return 404
+    return (
+      <div>
+        <p>404</p>
+        <Link href="/pages/1">
+          <a>/pages/1 に戻る</a>
+        </Link>
+      </div>
+    )
   }
 
   return (
