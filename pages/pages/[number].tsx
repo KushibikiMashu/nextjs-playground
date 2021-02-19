@@ -91,11 +91,11 @@ const getNavPages = ({ totalPages, activePage }: { activePage: number; totalPage
     return range(2, totalPages - 1)
   }
 
-  // length > 4 のとき
+  // length >= 8 のとき
   // UI では null を「...」で表現する
-  // 1. 1 [2, 3, 4, 5, null] 12     | active = 4 | 1 < active <= 1 + 3
-  // 2. 1 [null, 4, 5, 6, null] 12  | active = 5 | 1 + 3 < active && active < last - 3
-  // 3. 1 [null, 8, 9, 10, 11] 12   | active = 9 | last - 3 <= active < last
+  // 1. active = 4 | 1 [2, 3, 4, 5, null] 12     | 1 < active <= 1 + 3
+  // 2. active = 5 | 1 [null, 4, 5, 6, null] 12  | 1 + 3 < active && active < last - 3
+  // 3. active = 9 | 1 [null, 8, 9, 10, 11] 12   | last - 3 <= active < last
   if (activePage <= 4) {
     // 1のパターン
     return [...range(2, 5), null]
