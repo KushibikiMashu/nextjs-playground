@@ -40,7 +40,7 @@ const Component: React.FC<Props> = (props) => (
 )
 
 const Container: React.FC<ContainerProps> = () => {
-  const state = useSelector((state) => state)
+  const state = useSelector((state: InitialState) => state)
   const dispatch = useDispatch()
 
   const increment = () => dispatch(incrementCount())

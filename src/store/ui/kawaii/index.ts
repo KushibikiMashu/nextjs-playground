@@ -8,7 +8,7 @@ export const kawaiiFire = () => ({ type: FIRE })
 
 // state
 const initialState = 'idle'
-export type State = typeof initialState
+export type State = 'idle' | 'fired'
 
 // reducer
 export const reducer = (state: State = initialState, action) => {

@@ -4,6 +4,7 @@ import Kawaii from './Kawaii'
 import CustomLink from '~/src/components/_shared/CustomLink'
 import { GITHUB_REPOSITORY_URL, Paths } from '~/src/constants'
 import { startClock } from '~/src/store/app/timer'
+import { InitialState } from '~/src/store/store'
 import { kawaiiFire, kawaiiIdle } from '~/src/store/ui/kawaii'
 
 type ContainerProps = { pathname: string }
@@ -74,8 +75,8 @@ export const Component: React.FC<Props> = memo((props) => (
 
 const Container: React.FC<ContainerProps> = memo(
   (props) => {
-    const { tickCount, kawaiiStatus } = useSelector((state) => state.ui)
-    const { lastUpdate } = useSelector((state) => state.app.timer)
+    const { tickCount, kawaiiStatus } = useSelector((state: InitialState) => state.ui)
+    const { lastUpdate } = useSelector((state: InitialState) => state.app.timer)
     const dispatch = useDispatch()
     // timer の色を変えるフラグ
     const [timerFlag, setTimerFlag] = useState(false)
