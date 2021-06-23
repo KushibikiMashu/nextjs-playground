@@ -9,9 +9,11 @@ export default NextAuth({
     }),
   ],
   callbacks: {
-    async signIn(user, account, profile) {
-      console.log('sign in', user, account, profile)
+    async signIn() {
       return true
+    },
+    async redirect(url, baseUrl) {
+      return `${baseUrl}/next-auth`
     },
   },
   pages: {
