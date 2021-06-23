@@ -1,7 +1,8 @@
+import { signIn } from 'next-auth/client'
 import CustomLink from '~/src/components/_shared/CustomLink'
 import { Paths } from '~/src/constants'
 
-const Page = () => {
+const NextAuthPage = () => {
   return (
     <div className="mx-8 text-center">
       <nav>
@@ -11,10 +12,12 @@ const Page = () => {
       </nav>
 
       <main className="my-4">
-        <span>Login</span>
+        <button className="px-4 py-2 rounded-md text-white bg-teal-400" type="button" onClick={() => signIn()}>
+          Login
+        </button>
       </main>
     </div>
   )
 }
 
-export default Page
+export default NextAuthPage

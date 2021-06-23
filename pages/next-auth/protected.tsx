@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-const Page = () => {
+const NextAuthProtectedPage = () => {
   const router = useRouter()
   const handleClick = () => router.back()
 
@@ -13,4 +13,4 @@ const Page = () => {
   )
 }
 
-export default Page
+export default NextAuthProtectedPage
