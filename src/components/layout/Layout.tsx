@@ -90,14 +90,14 @@ const Container: React.FC<ContainerProps> = memo(
     // tick の回数 30 回ごとにフラグを toggle する
     useEffect(() => {
       if (!showKawaii) {
-        return
+        return () => {}
       }
 
       const canDivideByThirty = tickCount !== 0 && tickCount % 30 === 0
       if (canDivideByThirty) {
         setTimerFlag((state) => !state)
         dispatch(kawaiiFire())
-        return
+        return () => {}
       }
 
       dispatch(kawaiiIdle())
