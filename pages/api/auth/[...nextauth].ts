@@ -14,5 +14,9 @@ export default NextAuth({
       return true
     },
   },
+  pages: {
+    signIn: '/auth/signin',
+  },
+  theme: 'light',
   debug: true,
 })
