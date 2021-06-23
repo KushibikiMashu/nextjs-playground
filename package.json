@@ -32,9 +32,9 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "immer": "^8.0.1",
-    "next": "^10.0.6",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "next": "^11.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-kawaii": "^0.17.0",
     "react-redux": "^7.2.2",
     "react-use": "^17.1.0",
