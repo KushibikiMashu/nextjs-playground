@@ -31,6 +31,10 @@ const Component: React.FC<Props> = (props) => (
 const Container: React.FC<ContainerProps> = () => {
   const pages = [
     {
+      path: Paths['next-auth'],
+      description: 'Next Auth example with Google Auth',
+    },
+    {
       path: Paths.redux,
       description: 'State management with Redux and Redux Thunk',
     },
