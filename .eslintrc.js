@@ -9,6 +9,7 @@ module.exports = {
     'standard',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:@next/next/recommended',
     // 競合を避けるため、prettierは一番最後に書く
     'plugin:prettier/recommended',
     'prettier/react',
