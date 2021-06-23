@@ -1,6 +1,7 @@
 export const Paths = {
   top: '/',
   'next-auth': '/next-auth',
+  'next-auth/protected': '/next-auth/protected',
   redux: '/redux',
   'i18n-blog/first-blog': '/i18n-blog/first-blog',
   recoil: '/recoil',
