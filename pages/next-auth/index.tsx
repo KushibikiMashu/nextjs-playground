@@ -48,6 +48,13 @@ const NextAuthPage = () => {
           </button>
         </div>
 
+        <div className="pt-4 mx-auto w-64 text-sm">
+          <p>
+            We don&lsquo;t use your profile for any analysis and save it to any database other than to your browser
+            cookie.
+          </p>
+        </div>
+
         <div className="pt-16 pb-4">
           {session ? (
             <>
