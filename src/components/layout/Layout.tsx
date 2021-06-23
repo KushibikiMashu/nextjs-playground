@@ -15,6 +15,8 @@ type Props = {
   timerFlag: boolean
   time: string
   isKawaiiFired: boolean
+  showKawaii: boolean
+  onToggleClick: () => void
 }
 
 // eslint-disable-next-line react/display-name
@@ -33,6 +35,9 @@ export const Component: React.FC<Props> = memo((props) => (
         <a className="ml-4 link" href="https://twitter.com/Panda_Program">
           Twitter
         </a>
+        <button className="ml-2 p-2 text-blue-800" style={{ width: 80 }} type="button" onClick={props.onToggleClick}>
+          {props.showKawaii ? 'kawaii on' : 'kawaii off'}
+        </button>
       </div>
     </nav>
     <main className="flex-grow pt-24">
@@ -57,7 +62,7 @@ export const Component: React.FC<Props> = memo((props) => (
     </div>
 
     {/* react kawaii */}
-    <Kawaii fired={props.isKawaiiFired} />
+    {props.showKawaii && <Kawaii fired={props.isKawaiiFired} />}
     <footer className="py-8 flex justify-center items-center border-t border-gray-200">
       Created By{' '}
       <a className="ml-2 text-blue-600 visited:text-purple-600" href="https://twitter.com/Panda_Program">
@@ -75,12 +80,19 @@ const Container: React.FC<ContainerProps> = memo(
     // timer の色を変えるフラグ
     const [timerFlag, setTimerFlag] = useState(false)
 
+    const [showKawaii, toggle] = useState(true)
+    const handleToggleClick = () => toggle((state) => !state)
+
     useEffect(() => {
       dispatch(startClock())
     }, [])
 
     // tick の回数 30 回ごとにフラグを toggle する
     useEffect(() => {
+      if (!showKawaii) {
+        return
+      }
+
       const canDivideByThirty = tickCount !== 0 && tickCount % 30 === 0
       if (canDivideByThirty) {
         setTimerFlag((state) => !state)
@@ -111,6 +123,8 @@ const Container: React.FC<ContainerProps> = memo(
         gitHubUrl={gitHubUrl}
         time={time}
         isKawaiiFired={isKawaiiFired}
+        showKawaii={showKawaii}
+        onToggleClick={handleToggleClick}
       />
     )
   },
