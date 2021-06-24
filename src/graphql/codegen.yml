@@ -1,8 +1,15 @@
 overwrite: true
-schema: "src/graphql/schema.graphql"
-documents: "src/graphql/queries/*.graphql"
 generates:
   src/graphql/generated/client.ts:
+    schema: "src/graphql/schema.graphql"
+    documents: "src/graphql/queries/*.graphql"
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+  src/graphql/pokemon/generated/client.ts:
+    schema: "src/graphql/pokemon/schema.graphql"
+    documents: "src/graphql/pokemon/pokemons.graphql"
     plugins:
       - "typescript"
       - "typescript-operations"

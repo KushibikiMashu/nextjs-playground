@@ -1,0 +1,5 @@
+query FindPokemons($first: Int!) {
+  pokemons(first: $first) {
+    name
+  }
+}

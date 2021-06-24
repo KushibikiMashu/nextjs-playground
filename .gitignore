@@ -31,4 +31,4 @@ yarn-error.log*
 
 cypress/screenshots/
 
-src/graphql/generated
+src/graphql/**/generated
