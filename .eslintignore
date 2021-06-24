@@ -1,3 +1,4 @@
 .eslintrc.js
 cypress/
 **/*.test.*
+src/graphql/generated/client.ts
