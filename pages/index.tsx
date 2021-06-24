@@ -31,6 +31,10 @@ const Component: React.FC<Props> = (props) => (
 const Container: React.FC<ContainerProps> = () => {
   const pages = [
     {
+      path: Paths['graphql/pokemons'],
+      description: 'Fetch Pokemon list with GraphQL and Apollo',
+    },
+    {
       path: Paths['next-auth'],
       description: 'Next Auth example with Google Auth',
     },

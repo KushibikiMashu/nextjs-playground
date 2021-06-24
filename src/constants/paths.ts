@@ -1,5 +1,6 @@
 export const Paths = {
   top: '/',
+  'graphql/pokemons': '/graphql/pokemons',
   'next-auth': '/next-auth',
   'next-auth/protected': '/next-auth/protected',
   redux: '/redux',
