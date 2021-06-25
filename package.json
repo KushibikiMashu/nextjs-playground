@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "build:prod": "npm run generate && npm run build",
     "start": "next start",
     "test": "jest",
     "fix": "prettier --write './**/*.{js,jsx,ts,tsx}'",
