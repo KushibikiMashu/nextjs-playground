@@ -26,7 +26,7 @@ const PokemonServer: React.VFC<Props> = (props) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { data } = await client.query({
     query: gql`
       query FindPokemons {
