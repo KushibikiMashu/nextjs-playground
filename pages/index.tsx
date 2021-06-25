@@ -31,7 +31,7 @@ const Component: React.FC<Props> = (props) => (
 const Container: React.FC<ContainerProps> = () => {
   const pages = [
     {
-      path: Paths['graphql/pokemons'],
+      path: Paths.pokemons,
       description: 'Fetch Pokemon list with GraphQL and Apollo',
     },
     {

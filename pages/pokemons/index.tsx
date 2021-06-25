@@ -1,7 +1,7 @@
 import CustomLink from '~/src/components/_shared/CustomLink'
 import { Paths } from '~/src/constants'
 
-const Pokemons: React.VFC = () => {
+const Index: React.VFC = () => {
   return (
     <div className="mx-16">
       <div className="pt-8 pb-12 flex justify-center">
@@ -20,10 +20,10 @@ const Pokemons: React.VFC = () => {
       </div>
 
       <p className="pt-8 pb-24 text-center space-x-4">
-        <CustomLink path={Paths['graphql/pokemons/server']}>
+        <CustomLink path={Paths['pokemons/server']}>
           <a className="link">server</a>
         </CustomLink>
-        <CustomLink path={Paths['graphql/pokemons/server']}>
+        <CustomLink path={Paths['pokemons/server']}>
           <a className="link">client</a>
         </CustomLink>
       </p>
@@ -38,4 +38,4 @@ const Pokemons: React.VFC = () => {
   )
 }
 
-export default Pokemons
+export default Index

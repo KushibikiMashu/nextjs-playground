@@ -7,8 +7,17 @@ type Props = {
   pokemons: FindPokemonsQuery
 }
 
-const PokemonServer: React.VFC<Props> = () => {
-  return <div>aa</div>
+const PokemonServer: React.VFC<Props> = (props) => {
+  console.log(props)
+  return (
+    <div className="mx-16 flex justify-center">
+      <ul>
+        {/*{props.pokemons.map((pokemon) => {*/}
+
+        {/*})}*/}
+      </ul>
+    </div>
+  )
 }
 
 export async function getStaticProps() {
