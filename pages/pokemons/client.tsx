@@ -16,11 +16,11 @@ const PokemonClient: React.VFC = () => {
   const { data, loading, error } = useQuery<FindPokemonsQuery>(Query)
 
   if (loading) {
-    return <p className="text-center">loading...</p>
+    return <p className="pt-8 text-center">loading...</p>
   }
 
   if (error) {
-    return <p className="text-center">error: {error.message}</p>
+    return <p className="pt-8 text-center">error: {error.message}</p>
   }
 
   return (

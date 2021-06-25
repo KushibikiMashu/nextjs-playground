@@ -29,7 +29,7 @@ const Index: React.VFC = () => {
         </CustomLink>
       </p>
 
-      <p className="pt-8">
+      <p className="pt-8 text-center">
         参考:{' '}
         <a className="link" href="https://kakakakakku.hatenablog.com/entry/2019/12/30/135420">
           GraphQL Pokémon を使って楽しく学ぶ GraphQL クエリ
