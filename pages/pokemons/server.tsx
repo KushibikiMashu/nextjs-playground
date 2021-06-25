@@ -11,9 +11,11 @@ type Props = FindPokemonsQuery
 const PokemonServer: React.VFC<Props> = (props) => {
   return (
     <div className="mx-16">
-      <div className="flex justify-center">
-        <PokemonList pokemons={props.pokemons} />
-      </div>
+      <h1 className="pt-8 pb-4 text-xl text-center">
+        <span className="font-bold">Server</span> Side Rendering
+      </h1>
+
+      <PokemonList pokemons={props.pokemons} />
 
       <p className="text-center">
         <CustomLink path={Paths.pokemons}>

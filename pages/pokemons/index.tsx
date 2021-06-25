@@ -20,11 +20,12 @@ const Index: React.VFC = () => {
       </div>
 
       <p className="pt-8 pb-24 text-center space-x-4">
+        <CustomLink path={Paths['pokemons/client']}>
+          <a className="link">client</a>
+        </CustomLink>
+
         <CustomLink path={Paths['pokemons/server']}>
           <a className="link">server</a>
-        </CustomLink>
-        <CustomLink path={Paths['pokemons/server']}>
-          <a className="link">client</a>
         </CustomLink>
       </p>
 
