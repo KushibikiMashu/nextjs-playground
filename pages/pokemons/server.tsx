@@ -1,21 +1,30 @@
 import { gql } from '@apollo/client'
 
+import CustomLink from '~/src/components/_shared/CustomLink'
+import { Paths } from '~/src/constants'
 import { FindPokemonsQuery } from '~/src/graphql/pokemon/generated/client'
 import client from '~/src/lib/apollo-client'
 
-type Props = {
-  pokemons: FindPokemonsQuery
-}
+type Props = FindPokemonsQuery
 
 const PokemonServer: React.VFC<Props> = (props) => {
-  console.log(props)
   return (
-    <div className="mx-16 flex justify-center">
-      <ul>
-        {/*{props.pokemons.map((pokemon) => {*/}
+    <div className="mx-16">
+      <div className="flex justify-center">
+        <ul className="pb-16">
+          {props.pokemons.map((pokemon, i) => (
+            <li className="py-2" key={pokemon.name}>
+              <span>00{i + 1}</span>: {pokemon.name}
+            </li>
+          ))}
+        </ul>
+      </div>
 
-        {/*})}*/}
-      </ul>
+      <p className="text-center">
+        <CustomLink path={Paths.pokemons}>
+          <a className="link">back</a>
+        </CustomLink>
+      </p>
     </div>
   )
 }
