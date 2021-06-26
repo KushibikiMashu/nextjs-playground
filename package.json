@@ -17,7 +17,7 @@
     "e2e:local": "start-server-and-test dev http://localhost:3000 cy:run",
     "e2e:ci": "npm run build && start-server-and-test start http://localhost:3000 cy:run",
     "tsc": "tsc",
-    "ci": "run-p test tsc lint e2e:ci",
+    "ci": "npm run generate && run-p test tsc lint e2e:ci",
     "generate": "graphql-codegen --config src/graphql/codegen.yml"
   },
   "husky": {
