@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 import CustomLink from '~/src/components/_shared/CustomLink'
-import PokemonList from '~/src/components/pokemon/PokemonList'
+import { PokemonList } from '~/src/components/pokemon'
 import { Paths } from '~/src/constants'
 import { FindPokemonsQuery } from '~/src/graphql/pokemon/generated/client'
 import client from '~/src/lib/apollo-client'
