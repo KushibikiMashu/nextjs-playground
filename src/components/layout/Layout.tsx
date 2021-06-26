@@ -24,19 +24,19 @@ type Props = {
 export const Component: React.FC<Props> = memo((props) => (
   <div className="flex flex-col min-h-screen">
     <nav className="w-screen flex items-center justify-between bg-white border-b border-gray-200 fixed inset-x-0 z-100 h-16">
-      <p className="pl-8 text-teal-600 text-xl">
+      <div className="pl-8 text-teal-600 text-xl">
         <CustomLink path={Paths.top} locale="en-US">
           <a>Next.js Playground</a>
         </CustomLink>
-      </p>
-      <div className="mr-8 text-sm">
+      </div>
+      <div className="mr-8 text-sm text-right space-x-4">
         <a className="link" href={props.gitHubUrl}>
           GitHub
         </a>
-        <a className="ml-4 link" href="https://twitter.com/Panda_Program">
+        <a className="link" href="https://twitter.com/Panda_Program">
           Twitter
         </a>
-        <button className="ml-2 p-2 text-blue-800" style={{ width: 80 }} type="button" onClick={props.onToggleClick}>
+        <button className="text-blue-800 mt-2" style={{ width: 68 }} type="button" onClick={props.onToggleClick}>
           {props.showKawaii ? 'kawaii on' : 'kawaii off'}
         </button>
       </div>
