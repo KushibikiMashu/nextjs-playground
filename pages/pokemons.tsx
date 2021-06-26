@@ -1,7 +1,7 @@
 import CustomLink from '~/src/components/_shared/CustomLink'
 import { Paths } from '~/src/constants'
 
-const Index: React.VFC = () => {
+const Pokemons: React.VFC = () => {
   return (
     <div className="mx-16">
       <div className="pt-8 pb-12 flex justify-center">
@@ -39,4 +39,4 @@ const Index: React.VFC = () => {
   )
 }
 
-export default Index
+export default Pokemons
