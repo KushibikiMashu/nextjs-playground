@@ -2,6 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import { useState } from 'react'
 import { PokemonList } from '~/src/components/pokemon'
 import { FindPokemonsQuery } from '~/src/graphql/pokemon/generated/client'
+import useAutoFocus from '~/src/hooks/useAutoFocus'
 
 function useInputNumber() {
   const [first, setFirst] = useState(9)
@@ -42,6 +43,7 @@ const ClientPokemonList: React.VFC<Props> = () => {
   const { data, loading, error } = useQuery<FindPokemonsQuery>(Query, {
     variables: { first: first },
   })
+  const ref = useAutoFocus<HTMLInputElement>()
 
   return (
     <div>
@@ -56,6 +58,7 @@ const ClientPokemonList: React.VFC<Props> = () => {
             placeholder="9"
             onChange={onChange}
             value={first}
+            ref={ref}
           />
           {numberError && <p className="pt-2 text-red-600">{numberError}</p>}
         </div>
