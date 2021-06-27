@@ -59,7 +59,7 @@ const ClientPokemonList: React.VFC<Props> = () => {
           {numberError && <p className="pt-2 text-red-600">{numberError}</p>}
         </div>
         <label className="text-sm" htmlFor="count">
-          The number of Pokemons you want to fetch
+          Enter the number of Pokemons you want to fetch.
         </label>
       </div>
 
