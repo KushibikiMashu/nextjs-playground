@@ -5,15 +5,10 @@ import { FindPokemonsQuery } from '~/src/graphql/pokemon/generated/client'
 import useAutoFocus from '~/src/hooks/useAutoFocus'
 
 function useInputNumber() {
-  const [first, setFirst] = useState(9)
+  const [first, setFirst] = useState<number | string>(9)
   const [numberError, setNumberError] = useState('')
   const handleChange = (e) => {
     const value = e.target.value
-
-    if (value === '') {
-      setFirst(0)
-      return
-    }
 
     if (value < 0 || value > 151) {
       const message = `Invalid value: ${value}. Number must be between 1 and 151.`
@@ -41,7 +36,8 @@ type Props = unknown
 const ClientPokemonList: React.VFC<Props> = () => {
   const { first, numberError, onChange } = useInputNumber()
   const { data, loading, error } = useQuery<FindPokemonsQuery>(Query, {
-    variables: { first: first },
+    variables: { first },
+    skip: !first,
   })
   const ref = useAutoFocus<HTMLInputElement>()
 
@@ -67,7 +63,9 @@ const ClientPokemonList: React.VFC<Props> = () => {
         </label>
       </div>
 
-      {loading ? (
+      {first === '' || first === 0 ? (
+        <p className="pb-8 text-xl text-red-600 text-center">Number must be between 1 and 151.</p>
+      ) : loading ? (
         <p className="pb-8 text-center">loading...</p>
       ) : error ? (
         <p className="pb-8 text-center">error: {error.message}</p>
